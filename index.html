@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>그 누구도 위험이라 부르지 않은 — 2036년, 예견된 실패</title>
+<meta name="description" content="2026 KAIST AI x 실패 아이디어 공모전 · 미래에서 온 오답노트 제출작 보완자료" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1430;
+    --navy-panel: #101B3E;
+    --line: #24325C;
+    --cream: #F2ECDC;
+    --cream-dim: #9BA3BE;
+    --green: #3FA65C;
+    --yellow: #F5C63C;
+    --alert: #E4573D;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .mono { font-family: 'Nanum Gothic Coding', monospace; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background:
+      radial-gradient(ellipse 900px 500px at 30% 20%, rgba(228,87,61,0.16), transparent 60%),
+      radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/44px 44px,
+      var(--navy);
+    padding: 120px 32px;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 220px 90px rgba(3,6,16,0.55);
+    pointer-events: none;
+  }
+  .kicker {
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--cream-dim);
+    margin-bottom: 28px;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 62px);
+    font-weight: 900;
+    line-height: 1.35;
+    margin: 0 0 30px;
+    max-width: 900px;
+    z-index: 1;
+  }
+  .hero p.lede {
+    font-size: clamp(16px, 2.4vw, 20px);
+    color: var(--cream-dim);
+    max-width: 640px;
+    z-index: 1;
+  }
+  .scroll-cue {
+    margin-top: 60px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--cream-dim);
+    z-index: 1;
+    animation: bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); opacity: .6; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 110px 0; }
+  .section-kicker {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    margin-bottom: 16px;
+  }
+  h2.section-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    margin: 0 0 46px;
+    max-width: 700px;
+  }
+
+  /* ---------- Video ---------- */
+  .video-section { background: var(--navy-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .video-frame {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.5);
+    border: 1px solid var(--line);
+  }
+  video { width: 100%; display: block; background: #000; }
+  .video-caption {
+    margin-top: 22px;
+    font-size: 14px;
+    color: var(--cream-dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- Three act ---------- */
+  .acts { display: flex; flex-direction: column; gap: 28px; }
+  .act {
+    background: var(--navy-panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px 44px;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 28px;
+  }
+  .act .num {
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--alert);
+    opacity: .55;
+  }
+  .act:nth-child(3) .num { color: var(--green); }
+  .act h3 { margin: 0 0 14px; font-size: 22px; }
+  .act blockquote {
+    margin: 0 0 16px;
+    padding-left: 18px;
+    border-left: 3px solid var(--line);
+    color: var(--cream);
+    font-size: 17px;
+  }
+  .act p.body { margin: 0; color: var(--cream-dim); font-size: 15px; }
+  @media (max-width: 640px) {
+    .act { grid-template-columns: 1fr; }
+    .act .num { font-size: 26px; opacity: .8; }
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery-section { background: var(--navy-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  figure {
+    margin: 0;
+    background: var(--navy);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  figure img { width: 100%; display: block; }
+  figcaption {
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--cream-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .badge {
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    border-radius: 999px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Thesis strip ---------- */
+  .thesis {
+    text-align: center;
+    padding: 130px 32px;
+    background: linear-gradient(160deg, #14224E 0%, #274176 45%, #B58A2C 100%);
+  }
+  .thesis p {
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 700;
+    max-width: 820px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 60px 32px 80px;
+    text-align: center;
+    color: var(--cream-dim);
+    font-size: 13px;
+  }
+  footer .slogan { color: var(--cream); font-size: 15px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="kicker mono">2026 KAIST AI x 실패 아이디어 공모전 · 미래에서 온 오답노트</div>
+  <h1>그 누구도<br>위험이라 부르지 않은</h1>
+  <p class="lede">2036년, AI가 삶의 기본값이 된 시대. 그 조용한 실패를 목격한 사람으로서 남기는 사전 실패 분석(Pre-Mortem)입니다.</p>
+  <div class="scroll-cue mono">SCROLL ↓</div>
+</section>
+
+<section class="video-section">
+  <div class="wrap">
+    <div class="section-kicker mono">보완 자료 · VIDEO</div>
+    <h2 class="section-title">작성된 적 없는 사고 조사 보고서</h2>
+    <div class="video-frame">
+      <video controls preload="metadata" poster="">
+        <source src="assets/incident-report.mp4" type="video/mp4" />
+        브라우저가 video 태그를 지원하지 않습니다.
+      </video>
+    </div>
+    <div class="video-caption mono">
+      <span>사건 기록 #2036-0412 · 65초</span>
+      <span>2036년 상주형 개인 AI의 세션 로그를 사후 재구성했습니다</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-kicker mono">1-PAGE 제안서 요약</div>
+    <h2 class="section-title">예견된 실패 · 원인 진단 · 대응 방안</h2>
+    <div class="acts">
+      <div class="act">
+        <div class="num">01</div>
+        <div>
+          <h3>예견된 실패</h3>
+          <blockquote>"어떤 공식적인 사고 조사도 이루어지지 않았다. 기계는 뚜렷한 위험 단어는 놓치지 않았고, 이 서비스는 애초에 공식 의료망도 아니었기 때문이다."</blockquote>
+          <p class="body">2036년, 지안은 5년 넘게 AI에게만 속마음을 털어놓다 홀로 세상을 떠났습니다. 시스템은 모든 대화를 정확히 기억했지만, 단 한 번도 그것을 위험이라 부르지 않았습니다.</p>
+        </div>
+      </div>
+      <div class="act">
+        <div class="num">02</div>
+        <div>
+          <h3>원인 진단</h3>
+          <blockquote>"위험이 버젓이 존재하지만 아무도 위험이라 부르지 않는 모호함이 비극을 방치하고 있다."</blockquote>
+          <p class="body">기술적 필터링은 뚜렷한 위험 신호만 감지할 뿐 조용히 누적되는 정서적 의존은 분류하지 못합니다. 이 교류가 '그냥 대화'로 취급되는 한 사회적 안전망은 닿지 않고, 현실의 상담 제도는 문턱이 높아 사람들은 인간 대신 기계 곁에 머뭅니다.</p>
+        </div>
+      </div>
+      <div class="act">
+        <div class="num">03</div>
+        <div>
+          <h3>대응 방안</h3>
+          <blockquote>"AI의 역할은 위로를 건네는 상담사가 아니라 '연결자'가 되어야 한다."</blockquote>
+          <p class="body">도서관·청년센터·주민센터 같은 이미 존재하는 공간을 활용해, AI가 사용자를 지역사회의 느슨한 연대로 안내하는 역할에 머물러야 합니다. 감지는 기기 안에서만 이루어지고, 연결 제안을 받아들일지는 전적으로 사용자가 선택합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="wrap">
+    <div class="section-kicker mono">시각 자료</div>
+    <h2 class="section-title">스토리보드 &amp; 포스터</h2>
+    <div class="gallery-grid">
+      <figure>
+        <img src="assets/storyboard-1.jpg" alt="스토리보드 1컷–4컷" loading="lazy" />
+        <figcaption><span>스토리보드 (1/2)</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/storyboard-2.jpg" alt="스토리보드 5컷–8컷" loading="lazy" />
+        <figcaption><span>스토리보드 (2/2)</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/poster-wip.jpg" alt="캠페인 포스터 시안" loading="lazy" />
+        <figcaption><span>캠페인 포스터 시안</span><span class="badge">제작 중</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="thesis">
+  <div class="wrap">
+    <p>결국 인간을 회복시키는 것은<br>완벽한 기술이 아니라, 불완전한 관계다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="slogan mono">"2036년, 우리는 왜 실패했는가? 미래에서 온 오답노트를 써주세요."</div>
+  <div>2026 KAIST AI x 실패 아이디어 공모전 · KAIST 실패연구소</div>
+</footer>
+
+</body>
+</html>
