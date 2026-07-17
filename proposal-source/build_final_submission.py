@@ -121,6 +121,7 @@ h1 {{ font-family:Header,serif; font-size:26pt; line-height:1.16; letter-spacing
 .closing span,.closing strong {{ display:block; }}
 .closing strong {{ color:var(--green); }}
 .source {{ position:absolute; left:0; right:0; bottom:3mm; font:6.7pt/1.38 Sans,sans-serif; color:var(--muted); border-top:.2mm solid var(--line); padding-top:1.7mm; }}
+.page-credit {{ position:absolute; left:0; bottom:0; font:7pt Sans,sans-serif; color:var(--muted); }}
 .page-no {{ position:absolute; right:0; bottom:0; font:7pt Sans,sans-serif; color:var(--muted); }}
 @media print {{
   @page {{ size:A4; margin:0; }}
@@ -169,7 +170,7 @@ addEventListener('DOMContentLoaded',()=>{{
       <article><span class="trace-no">03 · 마지막 밤</span><b>명시적 위험어 없음</b><span>누적된 고립은 위기 경보로 이어지지 않았다.</span></article>
       <article><span class="trace-no">04 · 이후</span><b>공식 조사 없음</b><span>의료·상담 영역 밖의 사고로 기록되지 않았다.</span></article>
     </div>
-    <div class="bottom-note mono"><span>문서 분류: 미래 사고 조사 기록 / 비공식 Pre-Mortem</span><span>01 / 02</span></div>
+    <div class="bottom-note mono"><span>TEAM INCOM 45 · 정영운 · 우연정 · 이유빈</span><span>01 / 02</span></div>
   </div>
 </section>
 
@@ -186,7 +187,7 @@ addEventListener('DOMContentLoaded',()=>{{
       <div class="arrow">→</div>
       <article class="cause"><span class="cause-k">RELATION</span><h3>돌아갈 길이 없었다</h3><p>공식 상담은 무겁고 가까운 사람에게는 짐이 될까 두려웠다. 제도는 부담스럽고 관계는 피곤할 때, 아무것도 요구하지 않는 AI가 가장 편안한 고립이 됐다.</p></article>
     </div>
-    <div class="diagnosis">문제는 위험을 감지하지 못하는 것만이 아니라, 무엇을 위험으로 볼 것인지와 감지 이후 사람에게 어떻게 이어 줄 것인지가 비어 있었다는 데 있다.</div>
+    <div class="diagnosis">위기상담 인력을 늘리는 것만으로는 부족하다. 문제는 무엇을 위험으로 볼지, 그리고 감지 이후 부담을 낮춰 사람에게 어떻게 이어 줄지에 있다.</div>
 
     <div class="protocol-head"><h2 class="section-title"><span class="num" style="background:var(--green)">3</span> 대응 방안</h2><span class="protocol-name">CONNECTION LINE PROTOCOL · 연결선 프로토콜</span></div>
     <div class="protocol">
@@ -196,12 +197,13 @@ addEventListener('DOMContentLoaded',()=>{{
     </div>
     <div class="principle"><strong>분류의 대상은 사람이 아니다.</strong> AI에게 기대는 개인을 위험으로 낙인찍는 대신, 그 의존을 알아도 아무도 책임지지 않는 <strong>방치 구조를 사회적 위험으로 분류</strong>한다.</div>
     <div class="roadmap">
-      <div><b>01 · 위험의 기준</b><span>뚜렷한 경고어뿐 아니라 조용히 누적되는 만성적 고립을 무엇으로 볼지 정의한다.</span></div>
-      <div><b>02 · AI의 역할</b><span>상담을 대신하는 존재가 아니라 사람과 사람 사이의 첫 접점을 만드는 연결자로 제한한다.</span></div>
-      <div><b>03 · 기존 공간의 연결</b><span>새 시설 대신 도서관·청년센터·주민센터의 가벼운 소통 프로그램을 활용한다.</span></div>
+      <div><b>01 · 사용자의 선택권</b><span>자동 신고나 일방적 개입 대신, 연결의 방식과 시점을 사용자가 고를 수 있게 한다.</span></div>
+      <div><b>02 · AI 역할의 경계</b><span>상담을 대신하지 않고 제안과 첫 문장까지만 도우며, 관계의 주체를 사람에게 돌려준다.</span></div>
+      <div><b>03 · 기존 공간 활용</b><span>새 시설 대신 도서관·청년센터·주민센터의 가벼운 소통 프로그램을 연결한다.</span></div>
     </div>
     <p class="closing"><span>AI가 해야 할 일은 위로를 대신 끝맺는 것이 아니라,</span><strong>사람이 사람에게 다시 닿도록</strong><strong>첫 문장을 건네는 것이다.</strong></p>
-    <div class="source">[1] 경기연구원 조사(수도권 15-49세 1,012명): AI 상담 이용 경험은 정상군 27%, 경도 우울군 41%, 중증 우울 이상군 53%. 연합뉴스, 「우울증 심할수록 AI 상담 이용률 높아…정상군의 2배」, 2026.03.17.<br>※ 본 제안은 의료 진단이나 위기상담 대체가 아니라, 비의료 AI 서비스에서 현실의 인간관계로 이어지는 예방적 연결 경로를 제안한다.</div>
+    <div class="source">[1] 경기연구원 조사(수도권 15-49세 1,012명): AI 상담 이용 경험은 정상군 27%, 경도 우울군 41%, 중증 우울 이상군 53%. 응답자의 77%는 향후 AI 고민 상담 의향이 있다고 답했다. 연합뉴스, 2026.03.17.<br>※ 본 제안은 의료 진단이나 위기상담 대체가 아니라, 비의료 AI 서비스에서 현실의 인간관계로 이어지는 예방적 연결 경로를 제안한다.</div>
+    <div class="page-credit mono">TEAM INCOM 45 · 정영운 · 우연정 · 이유빈</div>
     <div class="page-no mono">02 / 02</div>
   </div>
 </section>
