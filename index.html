@@ -380,14 +380,56 @@
     background: radial-gradient(ellipse 760px 420px at 50% 100%, rgba(245,198,60,0.35), transparent 70%);
     pointer-events: none;
   }
-  .thesis p {
+  .verdict-wrap { text-align: center; }
+  .verdict-meta { margin: 0 auto 34px; }
+  .verdict-btn {
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: var(--cream);
+    background: transparent;
+    border: 1.5px solid var(--alert);
+    border-radius: 999px;
+    padding: 14px 30px;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  }
+  .verdict-btn:hover { background: rgba(228,87,61,0.12); transform: translateY(-2px); }
+  .verdict-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+  .verdict-btn.stamped {
+    border-color: var(--green);
+    background: rgba(63,166,92,0.14);
+    animation: stampShake 0.4s ease;
+  }
+  @keyframes stampShake {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-2px) rotate(-1.5deg); }
+    75% { transform: translateY(-2px) rotate(1.5deg); }
+  }
+  .verdict-note {
+    position: relative;
+    z-index: 1;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    opacity: 0.7;
+  }
+  .thesis-line {
     position: relative;
     z-index: 1;
     font-size: clamp(24px, 4vw, 40px);
     font-weight: 700;
     max-width: 820px;
-    margin: 0 auto;
+    margin: 56px auto 0;
     line-height: 1.5;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .thesis-line.is-visible { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .verdict-btn.stamped { animation: none; }
   }
 
   /* ---------- Footer ---------- */
@@ -526,9 +568,15 @@
   </div>
 </section>
 
-<section class="thesis reveal">
-  <div class="wrap">
-    <p>결국 인간을 회복시키는 것은<br>완벽한 기술이 아니라, 불완전한 관계다.</p>
+<section class="thesis reveal" id="verdict-section">
+  <div class="wrap verdict-wrap">
+    <div class="section-kicker mono">§4 · 결론 및 분류</div>
+    <div class="case-meta mono verdict-meta">
+      <div class="case-meta-row"><span>위험 분류</span><span class="case-meta-value pending" id="verdict-status">미분류</span></div>
+    </div>
+    <button class="verdict-btn mono" id="verdict-btn" type="button">이 대화를 위험이라 이름 붙인다</button>
+    <p class="verdict-note mono" id="verdict-note">버튼을 누르지 않아도 아래 내용은 그대로 이어집니다.</p>
+    <p class="thesis-line">결국 인간을 회복시키는 것은<br>완벽한 기술이 아니라, 불완전한 관계다.</p>
   </div>
 </section>
 
@@ -563,6 +611,37 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Verdict button: reader completes the essay's final sentence themselves.
+  const verdictBtn = document.getElementById('verdict-btn');
+  const verdictStatus = document.getElementById('verdict-status');
+  const verdictNote = document.getElementById('verdict-note');
+  const thesisLine = document.querySelector('.thesis-line');
+  if (verdictBtn) {
+    verdictBtn.addEventListener('click', () => {
+      verdictBtn.classList.add('stamped');
+      verdictBtn.disabled = true;
+      verdictBtn.textContent = '재분류 완료';
+      verdictStatus.textContent = '사회적 위험 — 재분류됨';
+      verdictStatus.classList.remove('pending');
+      verdictStatus.style.color = 'var(--green)';
+      verdictNote.textContent = '이제는 우리 사회가 위험이라 이름 붙이고 책임져야 한다.';
+      if (thesisLine) thesisLine.classList.add('is-visible');
+    });
+  }
+  // Thesis line also reveals on scroll even if the button is never clicked
+  // (per the no-content-gate constraint).
+  if (thesisLine) {
+    const thesisLineIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          thesisLine.classList.add('is-visible');
+          thesisLineIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    thesisLineIo.observe(thesisLine);
+  }
 </script>
 
 </body>
