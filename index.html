@@ -24,6 +24,7 @@
     --navy:#0B1430; --navy-2:#101B3E; --navy-3:#172651; --line:#293965;
     --cream:#F5F0E3; --cream-dim:#A8AEC2; --paper:#EDE5D2;
     --red:#E4573D; --yellow:#F5C63C; --green:#3FA65C; --warm:#B58A2C;
+    --path-failure:#9AA3E8; --path-success:#F0C869;
     --shadow:0 30px 80px rgba(0,0,0,.38);
   }
   * { box-sizing:border-box; }
@@ -150,6 +151,10 @@
   .thesis em { color:var(--yellow); font-style:normal; }
   .completion { display:none; margin-top:34px; }
   .completion.show { display:block; animation:fade .5s ease; }
+  .completion-poster { display:flex; align-items:center; gap:16px; width:min(420px,100%); margin:28px auto 0; padding:10px; border:1px solid rgba(245,240,227,.25); border-radius:14px; background:rgba(11,20,48,.32); backdrop-filter:blur(6px); text-align:left; cursor:zoom-in; }
+  .completion-poster img { flex:0 0 auto; width:56px; height:auto; aspect-ratio:1400/1980; object-fit:cover; border-radius:8px; }
+  .completion-poster span { display:block; font-size:12px; color:var(--cream-dim); line-height:1.6; }
+  .completion-poster strong { display:block; margin-top:3px; color:var(--cream); font-family:'Noto Serif KR',serif; font-size:14px; font-weight:700; }
   .completion-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px; }
   @keyframes fade { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
 
@@ -180,17 +185,25 @@
   .storyboard-head h3 { margin:6px 0 0; font-family:'Noto Serif KR',serif; font-size:clamp(25px,3.2vw,38px); letter-spacing:-.035em; }
   .storyboard-head p { max-width:520px; margin:0; color:var(--cream-dim); font-size:14px; }
   .scenario-tabs { display:flex; gap:8px; margin-bottom:22px; padding:5px; width:max-content; border:1px solid var(--line); border-radius:999px; background:#080e21; }
-  .scenario-tab { padding:10px 17px; border:0; border-radius:999px; background:transparent; color:var(--cream-dim); cursor:pointer; font:700 12px 'Nanum Gothic Coding',monospace; }
+  .scenario-tab { padding:10px 17px; border:0; border-radius:999px; background:transparent; color:var(--cream-dim); cursor:pointer; font:700 12px 'Nanum Gothic Coding',monospace; transition:background .25s ease,color .25s ease; }
   .scenario-tab[aria-selected="true"] { background:var(--cream); color:var(--navy); }
+  #failure-tab[aria-selected="true"] { background:var(--path-failure); color:#0d1734; }
+  #success-tab[aria-selected="true"] { background:var(--path-success); color:#0d1734; }
   .story-sequence[hidden] { display:none; }
-  .story-sequence { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .story-sequence { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; transition:opacity .18s ease; }
+  .story-sequence.is-fading { opacity:0; }
+  .story-fork { grid-column:1/-1; display:flex; align-items:center; gap:14px; margin:6px 0 2px; color:var(--path-failure); }
+  .story-sequence[data-scenario="success"] .story-fork { color:var(--path-success); }
+  .story-fork-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,currentColor,transparent); opacity:.55; }
+  .story-fork-label { flex:0 0 auto; font-size:10px; letter-spacing:.14em; color:currentColor; opacity:.9; }
   .story-panel { display:flex; flex-direction:column; min-height:0; margin:0; padding:0; overflow:hidden; border:1px solid var(--line); border-radius:13px; background:#080e21; color:var(--cream); text-align:left; cursor:zoom-in; }
   .story-panel:focus-visible { outline:2px solid var(--yellow); outline-offset:3px; }
   .story-panel img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:contain; background:#050a18; transition:transform .35s ease,filter .35s ease; }
   .story-panel:hover img { transform:scale(1.012); filter:brightness(.9); }
   .story-panel figcaption { display:flex; flex:1; flex-direction:column; justify-content:center; min-height:116px; padding:18px 20px 20px; font-size:14px; line-height:1.65; }
-  .story-panel b { display:block; margin-bottom:8px; color:var(--yellow); font:700 10px 'Nanum Gothic Coding',monospace; letter-spacing:.1em; }
-  .story-sequence[data-scenario="success"] .story-panel b { color:#77dca1; }
+  .story-panel b { display:block; margin-bottom:8px; color:var(--path-failure); font:700 10px 'Nanum Gothic Coding',monospace; letter-spacing:.1em; }
+  .story-sequence[data-scenario="success"] .story-panel b { color:var(--path-success); }
+  .story-panel[data-shared="true"] b { color:var(--cream-dim); }
   .storyboard-source { display:inline-block; margin-top:20px; color:var(--cream-dim); font:700 11px 'Nanum Gothic Coding',monospace; text-underline-offset:4px; }
   .poster-block { margin-top:62px; padding:64px 24px 58px; border-top:1px solid var(--line); border-radius:22px; text-align:center; background:radial-gradient(circle at 50% 22%,rgba(245,198,60,.16),transparent 62%); }
   .poster-title { margin:10px 0 34px; font-family:'Noto Serif KR',serif; font-size:clamp(26px,3.6vw,40px); letter-spacing:-.035em; }
@@ -406,6 +419,10 @@
       <p class="thesis"><span>AI가 해야 할 일은 위로를 대신 끝맺는 것이 아니라,</span><em>사람이 사람에게 다시 닿도록</em><em>첫 문장을 건네는 것이다.</em></p>
       <div class="completion" id="completion">
         <strong class="serif">사고 조사 보고서가 완성되었습니다.</strong>
+        <button class="completion-poster" type="button" data-still="assets/poster.jpg" data-alt="공모전 포스터: 어두운 방에서 홀로 AI와 대화하던 인물이 문을 열고 나와, 사람들이 모여 있는 밝은 방을 향해 걸어가는 장면. 문구: 우린, 다시 사람에게 연결한다.">
+          <img src="assets/poster.jpg" alt="공모전 포스터: 어두운 방에서 홀로 AI와 대화하던 인물이 문을 열고 나와, 사람들이 모여 있는 밝은 방을 향해 걸어가는 장면. 문구: 우린, 다시 사람에게 연결한다." loading="lazy" />
+          <span>같은 결론을, 포스터 한 장으로도<strong>우린, 다시 사람에게 연결한다.</strong></span>
+        </button>
         <div class="completion-actions">
           <a class="action-btn green" href="assets/final-proposal.pdf" target="_blank" rel="noopener" type="application/pdf">완성된 제안서 열기</a>
           <a class="secondary-btn" href="#archive">사건 기록 더 보기</a>
@@ -453,8 +470,9 @@
           <button class="scenario-tab" id="success-tab" type="button" role="tab" aria-selected="false" aria-controls="success-sequence" data-scenario-target="success">성공 시나리오 · 8장</button>
         </div>
         <div class="story-sequence" id="failure-sequence" role="tabpanel" aria-labelledby="failure-tab" data-scenario="failure">
-          <figure class="story-panel" data-still="assets/storyboard/common-01-ai-conversation.jpg" data-alt="늦은 새벽 AI에게 속마음을 털어놓는 지안"><img src="assets/storyboard/common-01-ai-conversation.jpg" alt="늦은 새벽 AI에게 속마음을 털어놓는 지안" loading="lazy" /><figcaption><b>FAILURE · 01</b>늦은 새벽, 지안은 오늘도 AI에게 속마음을 털어놓는다.</figcaption></figure>
-          <figure class="story-panel" data-still="assets/storyboard/common-02-isolated-room.jpg" data-alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안"><img src="assets/storyboard/common-02-isolated-room.jpg" alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안" loading="lazy" /><figcaption><b>FAILURE · 02</b>지안에게도 연락할 사람은 있었지만, 타인에게 짐이 될까 봐 쉽게 말하지 못한다.</figcaption></figure>
+          <figure class="story-panel" data-shared="true" data-still="assets/storyboard/common-01-ai-conversation.jpg" data-alt="늦은 새벽 AI에게 속마음을 털어놓는 지안"><img src="assets/storyboard/common-01-ai-conversation.jpg" alt="늦은 새벽 AI에게 속마음을 털어놓는 지안" loading="lazy" /><figcaption><b>COMMON · 01</b>늦은 새벽, 지안은 오늘도 AI에게 속마음을 털어놓는다.</figcaption></figure>
+          <figure class="story-panel" data-shared="true" data-still="assets/storyboard/common-02-isolated-room.jpg" data-alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안"><img src="assets/storyboard/common-02-isolated-room.jpg" alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안" loading="lazy" /><figcaption><b>COMMON · 02</b>지안에게도 연락할 사람은 있었지만, 타인에게 짐이 될까 봐 쉽게 말하지 못한다.</figcaption></figure>
+          <div class="story-fork"><span class="story-fork-line"></span><span class="story-fork-label mono">여기서, 실패로 갈라진다</span><span class="story-fork-line"></span></div>
           <figure class="story-panel" data-still="assets/storyboard/failure-03-crisis-call.jpg" data-alt="위기상담 전화를 건 지안"><img src="assets/storyboard/failure-03-crisis-call.jpg" alt="위기상담 전화를 건 지안" loading="lazy" /><figcaption><b>FAILURE · 03</b>몇 주 전, 지안은 용기를 내어 위기상담 전화를 걸었다.</figcaption></figure>
           <figure class="story-panel" data-still="assets/storyboard/failure-04-crisis-warning.jpg" data-alt="경찰과 보호자 연락 가능성을 고지받는 지안"><img src="assets/storyboard/failure-04-crisis-warning.jpg" alt="경찰과 보호자 연락 가능성을 고지받는 지안" loading="lazy" /><figcaption><b>FAILURE · 04</b>하지만 위기상담 전화의 매뉴얼과 경고 문구는 지안의 마음을 더 멀어지게 했다.</figcaption></figure>
           <figure class="story-panel" data-still="assets/storyboard/failure-05-ai-return.jpg" data-alt="다시 AI에게 돌아간 지안"><img src="assets/storyboard/failure-05-ai-return.jpg" alt="다시 AI에게 돌아간 지안" loading="lazy" /><figcaption><b>FAILURE · 05</b>그리고 다시, 아무것도 요구하지 않는 AI에게 돌아갔다.</figcaption></figure>
@@ -463,8 +481,9 @@
           <figure class="story-panel" data-still="assets/storyboard/failure-08-no-investigation.jpg" data-alt="특이사항 없음으로 기록된 사건 보고서"><img src="assets/storyboard/failure-08-no-investigation.jpg" alt="특이사항 없음으로 기록된 사건 보고서" loading="lazy" /><figcaption><b>FAILURE · 08</b>아무도 이유를 찾지 못했다. 기술의 실수가 아니라, 사회가 만든 예견된 실패였다.</figcaption></figure>
         </div>
         <div class="story-sequence" id="success-sequence" role="tabpanel" aria-labelledby="success-tab" data-scenario="success" hidden>
-          <figure class="story-panel" data-still="assets/storyboard/common-01-ai-conversation.jpg" data-alt="늦은 새벽 AI에게 속마음을 털어놓는 지안"><img src="assets/storyboard/common-01-ai-conversation.jpg" alt="늦은 새벽 AI에게 속마음을 털어놓는 지안" loading="lazy" /><figcaption><b>SUCCESS · 01</b>늦은 새벽, 지안은 오늘도 AI에게 속마음을 털어놓는다.</figcaption></figure>
-          <figure class="story-panel" data-still="assets/storyboard/common-02-isolated-room.jpg" data-alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안"><img src="assets/storyboard/common-02-isolated-room.jpg" alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안" loading="lazy" /><figcaption><b>SUCCESS · 02</b>지안에게도 연락할 사람은 있었지만, 타인에게 짐이 될까 봐 쉽게 말하지 못한다.</figcaption></figure>
+          <figure class="story-panel" data-shared="true" data-still="assets/storyboard/common-01-ai-conversation.jpg" data-alt="늦은 새벽 AI에게 속마음을 털어놓는 지안"><img src="assets/storyboard/common-01-ai-conversation.jpg" alt="늦은 새벽 AI에게 속마음을 털어놓는 지안" loading="lazy" /><figcaption><b>COMMON · 01</b>늦은 새벽, 지안은 오늘도 AI에게 속마음을 털어놓는다.</figcaption></figure>
+          <figure class="story-panel" data-shared="true" data-still="assets/storyboard/common-02-isolated-room.jpg" data-alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안"><img src="assets/storyboard/common-02-isolated-room.jpg" alt="연락이 쌓여 있지만 사람에게 말하지 못하는 지안" loading="lazy" /><figcaption><b>COMMON · 02</b>지안에게도 연락할 사람은 있었지만, 타인에게 짐이 될까 봐 쉽게 말하지 못한다.</figcaption></figure>
+          <div class="story-fork"><span class="story-fork-line"></span><span class="story-fork-label mono">여기서, 성공으로 갈라진다</span><span class="story-fork-line"></span></div>
           <figure class="story-panel" data-still="assets/storyboard/success-03-isolation-detected.jpg" data-alt="지안의 장기 고립을 감지한 AI"><img src="assets/storyboard/success-03-isolation-detected.jpg" alt="지안의 장기 고립을 감지한 AI" loading="lazy" /><figcaption><b>SUCCESS · 03</b>AI는 대화를 단순한 푸념으로 넘기지 않고, 오래 누적된 고립의 신호로 읽어 낸다.</figcaption></figure>
           <figure class="story-panel" data-still="assets/storyboard/success-04-third-space-options.jpg" data-alt="AI가 안내한 제3의 공간과 프로그램"><img src="assets/storyboard/success-04-third-space-options.jpg" alt="AI가 안내한 제3의 공간과 프로그램" loading="lazy" /><figcaption><b>SUCCESS · 04</b>AI는 위로를 반복하는 대신, 부담 없이 갈 수 있는 ‘제3의 공간’과 프로그램을 안내한다.</figcaption></figure>
           <figure class="story-panel" data-still="assets/storyboard/success-05-anonymous-booth.jpg" data-alt="익명 대화 부스에서 대화하는 지안"><img src="assets/storyboard/success-05-anonymous-booth.jpg" alt="익명 대화 부스에서 대화하는 지안" loading="lazy" /><figcaption><b>SUCCESS · 05</b>얼굴을 드러내지 않아도 되는 익명 대화 부스에서, 오랜만에 사람에게 고민을 털어놓는다.</figcaption></figure>
@@ -672,8 +691,16 @@
   const sequences = [...document.querySelectorAll('.story-sequence')];
   scenarioTabs.forEach((tab) => tab.addEventListener('click', () => {
     const target = tab.dataset.scenarioTarget;
+    if (tab.getAttribute('aria-selected') === 'true') return;
     scenarioTabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
-    sequences.forEach((sequence) => { sequence.hidden = sequence.dataset.scenario !== target; });
+    const current = sequences.find((sequence) => !sequence.hidden);
+    if (current) current.classList.add('is-fading');
+    window.setTimeout(() => {
+      sequences.forEach((sequence) => {
+        sequence.hidden = sequence.dataset.scenario !== target;
+        sequence.classList.remove('is-fading');
+      });
+    }, 180);
   }));
 
   const io = new IntersectionObserver((entries) => {
