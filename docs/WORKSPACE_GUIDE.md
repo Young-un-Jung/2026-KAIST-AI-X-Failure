@@ -8,6 +8,14 @@ C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure
 
 이 폴더 하나가 GitHub Desktop에서 보이는 기준 저장소다. Pull, Push, 변경 내역 확인은 모두 여기에서 수행한다.
 
+## 로컬 미리보기
+
+```bash
+python -m http.server 8080
+```
+
+브라우저에서 `http://localhost:8080`을 연다.
+
 ## 배포를 깨뜨리지 않는 규칙
 
 - `index.html`과 `assets/`는 GitHub Pages가 직접 사용하는 위치이므로 이동하지 않는다.

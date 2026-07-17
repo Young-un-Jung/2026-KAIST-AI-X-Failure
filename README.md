@@ -2,7 +2,7 @@
 
 **2026 KAIST AI × 실패 아이디어 공모전** 출품작 · TEAM INCOM 45
 
-2036년, AI는 한 사람의 모든 대화를 기억했다. 그러나 그 관계를 위험이라 부른 사람도, 이후를 조사한 기관도 없었다. 이 저장소는 그 사고를 다루는 인터랙티브 웹사이트, 65초 사고 기록 영상, 2페이지 제안서, 스토리보드까지 이 프로젝트의 모든 결과물과 제작 과정을 담고 있다.
+2036년, AI는 한 사람의 모든 대화를 기억했다. 그러나 그 관계를 위험이라 부른 사람도, 이후를 조사한 기관도 없었다. 이 저장소는 그 사고를 다루는 인터랙티브 웹사이트, 65초 사고 기록 영상, 2페이지 제안서, 포스터, 스토리보드까지 이 프로젝트의 모든 결과물과 제작 과정을 담고 있다.
 
 - 팀원: 정영운 · 우연정 · 이유빈
 
@@ -11,39 +11,14 @@
 | 자료 | 링크 |
 |---|---|
 | 🌐 공개 사이트 (인터랙티브 사건 조사 경험) | https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/ |
-| 📄 최종 제안서 PDF | [`최종_제안서.pdf`](./최종_제안서.pdf) |
 | 🎬 사고 기록 영상 (65초) | [`assets/incident-report.mp4`](./assets/incident-report.mp4) |
+| 📄 최종 제안서 PDF | [`최종_제안서.pdf`](./최종_제안서.pdf) |
 | 🖼️ 포스터 | [`assets/poster.jpg`](./assets/poster.jpg) |
 | 🎨 Figma (스토리보드 제작 보드) | [INCOM45_실패공모전](https://www.figma.com/design/NeuWLIoPZjSAY6PaBNKsl1/INCOM45_%EC%8B%A4%ED%8C%A8-%EA%B3%B5%EB%AA%A8%EC%A0%84?node-id=0-1&t=jgBEelUjbdtkfq2Q-1) |
 
-## 핵심 파일
+가장 빠르게 파악하려면 공개 사이트 → 65초 영상 → 제안서 순으로 보는 것을 권한다.
 
-| 경로 | 내용 |
-|---|---|
-| `index.html` | 공개 사이트 전체 (5단계 사건 조사 경험 + 사건 보관소) |
-| `assets/` | 사이트가 직접 서빙하는 영상·PDF·포스터·스토리보드 이미지 |
-| `submission/제안서_최종본.docx` \| `.pdf` \| `.txt` | 제출용 최종 제안서 (Word 원본 / PDF / 원문 텍스트) |
-| `submission/온라인_제출용_3단계_요약_최종.txt` | 온라인 신청서 "아이디어 요약" 입력용 텍스트 |
-| `video-source/` | 영상 Remotion 프로젝트 소스 |
-| `sources/storyboard-originals/` | 스토리보드 고해상도 원본 |
-| `sources/poster-original/` | 포스터 원본 (고해상도 PNG) |
-| `docs/` | 콘텐츠 결정 기준, 진행 기록, 작업 안내 |
-| `archive/` | 이전 초안·디자인 버전·제작 과정 백업 (현재 공개본에는 미사용) |
-
-## 프로젝트 구조
-
-```text
-2026-KAIST-AI-X-Failure/
-├── index.html            # 공개 사이트
-├── assets/                # 사이트용 영상·PDF·포스터·이미지
-├── submission/             # 최종 제출 원문·요약·제안서
-├── video-source/           # 영상 제작 소스 (Remotion)
-├── sources/                # 스토리보드·포스터·음원 고해상도 원본
-├── docs/                   # 콘텐츠 기준·진행 기록·작업 안내
-└── archive/                # 이전 버전·제작 과정 보관
-```
-
-## 콘텐츠 개요
+## 이 프로젝트
 
 Pre-Mortem(사전 실패 분석) 형식으로, 3단계로 구성된다.
 
@@ -53,19 +28,35 @@ Pre-Mortem(사전 실패 분석) 형식으로, 3단계로 구성된다.
 
 자세한 콘텐츠 기준은 [`docs/CONTENT_DECISIONS.md`](docs/CONTENT_DECISIONS.md), 근거 통계와 출처는 사이트 하단 "근거와 범위" 섹션과 `submission/제안서_최종본.txt`의 각주를 참고.
 
-## 사건 보관소 (Case Archive)
+## 사이트 구성
 
-공개 사이트 하단에는 본편 이후 이어지는 보관소가 있다: 완성 영상(`EXHIBIT A · FILM`), 최종 제안서, 영상 스틸 3장, 실패·성공 두 시나리오로 갈라지는 스토리보드 8장씩(`EXHIBIT B · STORYBOARD`), 그리고 포스터(`EXHIBIT C · POSTER`).
+공개 사이트는 사건 접수 → 증거 검토 → 원인 재구성 → 재발 방지 → 최종 분류 5단계를 순서대로 완료해야 다음 단계가 열리는 인터랙티브 조사 경험이다. 본편이 끝나면 스크롤로 이어지는 **사건 보관소(Case Archive)**가 있다.
 
-## 로컬에서 사이트 확인하기
+| 전시물 | 내용 |
+|---|---|
+| `EXHIBIT A · FILM` | 완성 영상, 영상 스틸 3장 |
+| `FINAL PROPOSAL` | 최종 제안서 PDF |
+| `EXHIBIT B · STORYBOARD` | 실패·성공 두 시나리오로 갈라지는 스토리보드 각 8장 |
+| `EXHIBIT C · POSTER` | 포스터 |
 
-```bash
-python -m http.server 8080
+## 저장소 구조
+
+```text
+2026-KAIST-AI-X-Failure/
+├── index.html            # 공개 사이트 전체 (5단계 조사 경험 + 사건 보관소)
+├── assets/                # 사이트가 직접 서빙하는 영상·PDF·포스터·스토리보드 이미지
+├── submission/             # 제출용 최종 제안서(.docx/.pdf/.txt)와 온라인 신청서 요약
+├── video-source/           # 영상 제작 소스 (Remotion)
+├── sources/                # 스토리보드·포스터·음원 고해상도 원본
+├── docs/                   # 콘텐츠 결정 기준·진행 기록·작업 안내
+└── archive/                # 이전 초안·디자인 버전·제작 과정 백업 (현재 공개본에는 미사용)
 ```
 
-브라우저에서 `http://localhost:8080`을 연다. `index.html`과 `assets/`는 GitHub Pages가 그대로 서빙하는 위치이므로 옮기지 않는다.
+- `submission/제안서_최종본.docx` \| `.pdf` \| `.txt` — 제출용 최종 제안서 (Word 원본 / PDF / 원문 텍스트)
+- `submission/온라인_제출용_3단계_요약_최종.txt` — 온라인 신청서 "아이디어 요약" 입력용 텍스트
 
-## 음원 출처
+## 출처 및 크레딧
 
 - 배경음: [Pixabay · Dark Ambient](https://pixabay.com/music/ambient-dark-ambient-543982/)
 - 효과음: [Pixabay · Stamp](https://pixabay.com/sound-effects/film-special-effects-stamp-81635/)
+- 통계 출처: [연합뉴스, 「우울증 심할수록 AI 상담 이용률 높아…정상군의 2배」](https://www.yna.co.kr/view/AKR20260317072700061) (경기연구원 조사, 2026.3.17)

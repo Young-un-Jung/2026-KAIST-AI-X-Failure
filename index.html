@@ -192,13 +192,13 @@
   .story-panel b { display:block; margin-bottom:8px; color:var(--yellow); font:700 10px 'Nanum Gothic Coding',monospace; letter-spacing:.1em; }
   .story-sequence[data-scenario="success"] .story-panel b { color:#77dca1; }
   .storyboard-source { display:inline-block; margin-top:20px; color:var(--cream-dim); font:700 11px 'Nanum Gothic Coding',monospace; text-underline-offset:4px; }
-  .poster-block { display:flex; gap:34px; align-items:center; margin-top:62px; padding-top:42px; border-top:1px solid var(--line); }
-  .poster-frame { flex:0 0 230px; padding:0; border:1px solid var(--line); border-radius:13px; overflow:hidden; background:#080e21; cursor:zoom-in; aspect-ratio:1400/1980; }
-  .poster-frame img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .35s ease,filter .35s ease; }
-  .poster-frame:hover img { transform:scale(1.02); filter:brightness(.9); }
-  .poster-copy h3 { margin:6px 0 12px; font-family:'Noto Serif KR',serif; font-size:clamp(22px,2.8vw,30px); letter-spacing:-.03em; }
-  .poster-copy p { max-width:480px; margin:0 0 14px; color:var(--cream-dim); font-size:14px; line-height:1.75; }
-  .poster-meta { color:var(--cream-dim); font-size:11px; letter-spacing:.08em; }
+  .poster-block { margin-top:62px; padding:64px 24px 58px; border-top:1px solid var(--line); border-radius:22px; text-align:center; background:radial-gradient(circle at 50% 22%,rgba(245,198,60,.16),transparent 62%); }
+  .poster-title { margin:10px 0 34px; font-family:'Noto Serif KR',serif; font-size:clamp(26px,3.6vw,40px); letter-spacing:-.035em; }
+  .poster-frame { display:inline-block; width:clamp(220px,32vw,400px); padding:0; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#080e21; cursor:zoom-in; aspect-ratio:1400/1980; box-shadow:0 34px 80px rgba(0,0,0,.4); }
+  .poster-frame img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .4s ease,filter .4s ease; }
+  .poster-frame:hover img { transform:scale(1.015); filter:brightness(.93); }
+  .poster-desc { max-width:520px; margin:30px auto 10px; color:var(--cream-dim); font-size:14px; line-height:1.75; }
+  .poster-meta { display:inline-block; color:var(--cream-dim); font-size:11px; letter-spacing:.08em; }
   .archive-bridge { position:relative; min-height:clamp(420px,52vh,600px); display:grid; place-items:center; padding:78px 24px 68px; text-align:center; background:linear-gradient(180deg,#8b6d32 0%,#413d54 30%,#18264a 66%,#0d1734 100%); overflow:hidden; }
   .archive-bridge::before { content:""; position:absolute; top:0; left:50%; width:1px; height:68px; background:linear-gradient(180deg,rgba(245,198,60,.9),rgba(245,198,60,0)); }
   .archive-bridge-inner { display:flex; flex-direction:column; align-items:center; gap:18px; }
@@ -236,8 +236,6 @@
     .protocol-card:last-child { border-bottom:0; }
     .archive-head { display:block; }
     .archive-head .section-lede { margin-top:16px; }
-    .poster-block { flex-direction:column; align-items:flex-start; }
-    .poster-frame { flex:0 0 auto; width:200px; }
     .editorial-break { display:none; }
   }
   @media (max-width:620px) {
@@ -477,15 +475,13 @@
         <a class="storyboard-source" href="https://www.figma.com/design/NeuWLIoPZjSAY6PaBNKsl1/INCOM45_%EC%8B%A4%ED%8C%A8-%EA%B3%B5%EB%AA%A8%EC%A0%84?node-id=0-1&amp;t=jgBEelUjbdtkfq2Q-1" target="_blank" rel="noopener">FIGMA 제작 보드 보기 ↗</a>
       </div>
       <div class="poster-block">
+        <div class="section-kicker mono">EXHIBIT C · POSTER</div>
+        <h3 class="poster-title">우린, 다시 사람에게 연결한다.</h3>
         <button class="poster-frame" type="button" data-still="assets/poster.jpg" data-alt="공모전 포스터: 어두운 방에서 홀로 AI와 대화하던 인물이 문을 열고 나와, 사람들이 모여 있는 밝은 방을 향해 걸어가는 장면. 문구: 우린, 다시 사람에게 연결한다.">
           <img src="assets/poster.jpg" alt="공모전 포스터: 어두운 방에서 홀로 AI와 대화하던 인물이 문을 열고 나와, 사람들이 모여 있는 밝은 방을 향해 걸어가는 장면. 문구: 우린, 다시 사람에게 연결한다." loading="lazy" />
         </button>
-        <div class="poster-copy">
-          <div class="section-kicker mono">EXHIBIT C · POSTER</div>
-          <h3>우린, 다시 사람에게 연결한다.</h3>
-          <p>어두운 방에서 AI에게만 말을 걸던 인물이 문을 열고, 사람들이 모여 있는 밝은 방을 향해 걸어 나갑니다. 이 프로젝트의 결론을 한 장으로 압축한 공모전 포스터입니다.</p>
-          <span class="poster-meta mono">클릭하면 크게 볼 수 있습니다.</span>
-        </div>
+        <p class="poster-desc">어두운 방에서 AI에게만 말을 걸던 인물이 문을 열고, 사람들이 모여 있는 밝은 방을 향해 걸어 나갑니다. 이 프로젝트의 결론을 한 장으로 압축한 공모전 포스터입니다.</p>
+        <span class="poster-meta mono">클릭하면 크게 볼 수 있습니다.</span>
       </div>
     </div>
   </section>
