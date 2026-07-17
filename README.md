@@ -8,11 +8,11 @@
 
 ## 구조
 
-- `index.html`, `assets/`: 실제 공개 사이트와 배포 자산
+- `index.html`, `assets/`: 실제 공개 사이트와 영상·PDF·웹용 스토리보드 자산
 - `submission/`: 팀 합의 원문, 온라인 요약, 최종 제안서
 - `proposal-source/`: 최종 PDF 생성 스크립트와 인쇄용 HTML
 - `video-source/`: Remotion 영상 소스와 추적되는 오디오 파일
-- `sources/`: 외부 음원의 원본 파일과 출처
+- `sources/`: 외부 음원 및 팀 스토리보드의 고해상도 원본
 - `archive/`: 이전 DOCX/PDF, 보완자료 이미지, 제작 과정 파일, 영상 저장소 백업
 - `docs/`: 현재 상태, 진행 기록, 콘텐츠 결정, 작업 안내
 

@@ -7,6 +7,7 @@ the same source supports page-by-page screenshot QA through ?page=1 / ?page=2.
 
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -18,16 +19,11 @@ SITE_ASSETS = ROOT / "assets"
 HTML_PATH = WORK / "proposal_final_C.html"
 ROOT_PDF = ROOT / "submission" / "제안서_최종_C_연결선.pdf"
 SITE_PDF = SITE_ASSETS / "final-proposal.pdf"
-CHROME = (
-    ROOT
-    / "video-source"
-    / "node_modules"
-    / ".remotion"
-    / "chrome-headless-shell"
-    / "win64"
-    / "chrome-headless-shell-win64"
-    / "chrome-headless-shell.exe"
+DEFAULT_CHROME = (
+    ROOT / "video-source" / "node_modules" / ".remotion" / "chrome-headless-shell"
+    / "win64" / "chrome-headless-shell-win64" / "chrome-headless-shell.exe"
 )
+CHROME = Path(os.environ.get("PROPOSAL_CHROME_PATH", str(DEFAULT_CHROME)))
 
 HEADER_FONT = Path(r"C:\Users\mynam\AppData\Local\Microsoft\Windows\Fonts\ChosunBg.TTF")
 BODY_FONT = Path(r"C:\Users\mynam\AppData\Local\Microsoft\Windows\Fonts\ChosunNm.ttf")
@@ -80,6 +76,13 @@ h1 {{ font-family:Header,serif; font-size:26pt; line-height:1.16; letter-spacing
 .story p {{ margin:0 0 3.1mm; break-inside:avoid; }}
 .story strong {{ font-family:Header,serif; font-weight:700; }}
 .pull {{ column-span:all; margin:4mm 0; padding:3.5mm 5mm; border-top:.3mm solid var(--red); border-bottom:.3mm solid var(--red); font-family:Header,serif; font-size:12.4pt; line-height:1.5; text-align:center; color:var(--red); }}
+.incident-trace {{ position:absolute; left:0; right:0; bottom:13mm; display:grid; grid-template-columns:repeat(4,1fr); border-top:.3mm solid var(--ink); border-bottom:.3mm solid var(--ink); background:rgba(255,255,255,.25); }}
+.incident-trace article {{ position:relative; min-height:20mm; padding:3mm 3.2mm 2.7mm; border-right:.2mm solid var(--line); }}
+.incident-trace article:last-child {{ border-right:0; }}
+.incident-trace article:not(:last-child)::after {{ content:""; position:absolute; right:-1.1mm; top:5.4mm; width:2mm; height:2mm; border-radius:50%; background:var(--red); z-index:2; }}
+.trace-no {{ display:block; margin-bottom:1.2mm; font:700 6.5pt "Malgun Gothic",sans-serif; color:var(--red); letter-spacing:.1em; }}
+.incident-trace b {{ display:block; margin-bottom:.7mm; font:700 7.7pt "Malgun Gothic",sans-serif; }}
+.incident-trace span:last-child {{ display:block; font:7pt/1.36 "Malgun Gothic",sans-serif; color:var(--muted); }}
 .bottom-note {{ position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:flex-end; border-top:.2mm solid var(--line); padding-top:2.5mm; font:7pt "Malgun Gothic",sans-serif; color:var(--muted); }}
 
 .p2 .eyebrow {{ margin-top:5mm; }}
@@ -106,7 +109,8 @@ h1 {{ font-family:Header,serif; font-size:26pt; line-height:1.16; letter-spacing
 .roadmap div {{ padding:2.3mm 3mm; background:var(--navy2); color:white; }}
 .roadmap b {{ display:block; font:700 7.2pt "Malgun Gothic",sans-serif; color:var(--yellow); margin-bottom:1mm; }}
 .roadmap span {{ font-size:8pt; line-height:1.35; }}
-.closing {{ position:absolute; left:0; right:0; bottom:22mm; margin:0; text-align:center; font-family:Header,serif; font-size:13.2pt; line-height:1.38; }}
+.closing {{ position:absolute; left:0; right:0; bottom:20mm; margin:0; text-align:center; font-family:Header,serif; font-size:11.8pt; line-height:1.44; letter-spacing:-.018em; }}
+.closing span,.closing strong {{ display:block; }}
 .closing strong {{ color:var(--green); }}
 .source {{ position:absolute; left:0; right:0; bottom:3mm; font:6.6pt/1.36 "Malgun Gothic",sans-serif; color:var(--muted); border-top:.2mm solid var(--line); padding-top:1.7mm; }}
 .page-no {{ position:absolute; right:0; bottom:0; font:7pt "Malgun Gothic",sans-serif; color:var(--muted); }}
@@ -147,7 +151,13 @@ addEventListener('DOMContentLoaded',()=>{{
       <div class="pull">“이것은 기술의 오류가 아니다. 위험을 다루도록 설계되지 않은 영역을 방치한 사회가 만들어낸 예견된 실패였다.”</div>
       <p>이 실패는 AI가 사람처럼 말했기 때문에 생긴 일이 아니다. <strong>사람처럼 가까워진 관계를 아무도 책임져야 할 관계로 인정하지 않았기 때문에</strong> 생겼다. 시스템은 정상 작동했고, 바로 그 정상성 속에서 고립은 기록 밖으로 밀려났다.</p>
     </div>
-    <div class="bottom-note mono"><span>문서 분류: 미래 사고 조사 기록 / 비공식 프리모템</span><span>01 / 02</span></div>
+    <div class="incident-trace" aria-label="사고 진행선">
+      <article><span class="trace-no">01 · 일상화</span><b>몇 년에 걸친 대화</b><span>AI가 가장 편안한 정서적 의지처가 됐다.</span></article>
+      <article><span class="trace-no">02 · 이탈</span><b>몇 주 전</b><span>위기상담의 문턱 앞에서 다시 AI로 돌아갔다.</span></article>
+      <article><span class="trace-no">03 · 마지막 밤</span><b>명시적 위험어 없음</b><span>누적된 고립은 위기 경보로 이어지지 않았다.</span></article>
+      <article><span class="trace-no">04 · 이후</span><b>공식 조사 없음</b><span>의료·상담 영역 밖의 사고로 기록되지 않았다.</span></article>
+    </div>
+    <div class="bottom-note mono"><span>문서 분류: 미래 사고 조사 기록 / 비공식 Pre-Mortem</span><span>01 / 02</span></div>
   </div>
 </section>
 
@@ -178,8 +188,8 @@ addEventListener('DOMContentLoaded',()=>{{
       <div><b>02 · AI의 역할</b><span>상담을 대신하는 존재가 아니라 사람과 사람 사이의 첫 접점을 만드는 연결자로 제한한다.</span></div>
       <div><b>03 · 기존 공간의 연결</b><span>새 시설 대신 도서관·청년센터·주민센터의 가벼운 소통 프로그램을 활용한다.</span></div>
     </div>
-    <p class="closing">AI가 해야 할 일은 위로를 대신 끝맺는 것이 아니라,<br><strong>사람이 사람에게 다시 닿도록 첫 문장을 건네는 것</strong>이다.</p>
-    <div class="source">[1] 경기연구원 조사(수도권 15-49세 1,012명): AI 상담 이용 경험은 정상군 27%, 경도 우울군 41%, 중증 우울 이상군 53%. 연합뉴스, 「우울증 심할수록 AI 상담 이용률 높아…정상군의 2배」, 2026.03.17.<br>※ 본 제안은 의료 진단이나 위기상담 대체가 아니라, 비의료 AI 서비스에서 현실의 인간 관계로 이어지는 예방적 연결 경로를 제안한다.</div>
+    <p class="closing"><span>AI가 해야 할 일은 위로를 대신 끝맺는 것이 아니라,</span><strong>사람이 사람에게 다시 닿도록</strong><strong>첫 문장을 건네는 것이다.</strong></p>
+    <div class="source">[1] 경기연구원 조사(수도권 15-49세 1,012명): AI 상담 이용 경험은 정상군 27%, 경도 우울군 41%, 중증 우울 이상군 53%. 연합뉴스, 「우울증 심할수록 AI 상담 이용률 높아…정상군의 2배」, 2026.03.17.<br>※ 본 제안은 의료 진단이나 위기상담 대체가 아니라, 비의료 AI 서비스에서 현실의 인간관계로 이어지는 예방적 연결 경로를 제안한다.</div>
     <div class="page-no mono">02 / 02</div>
   </div>
 </section>
