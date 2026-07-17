@@ -53,6 +53,21 @@
     background: linear-gradient(90deg, var(--alert), var(--yellow), var(--green));
     z-index: 200;
   }
+  .report-progress-label {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--cream-dim);
+    background: rgba(11,20,48,0.75);
+    padding: 3px 10px;
+    border-radius: 999px;
+    pointer-events: none;
+  }
+  @media (max-width: 640px) { .report-progress-label { display: none; } }
 
   /* ---------- Reveal-on-scroll ---------- */
   .reveal {
@@ -377,6 +392,7 @@
 <body>
 
 <div class="progress" id="progress"></div>
+<div class="report-progress-label mono" id="report-progress-label">보고서 작성률 0%</div>
 <div class="grain"></div>
 
 <section class="hero">
@@ -509,14 +525,18 @@
 </footer>
 
 <script>
-  // Scroll progress bar
+  // Scroll progress bar + report-completion label
   const progress = document.getElementById('progress');
+  const progressLabel = document.getElementById('report-progress-label');
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
     const scrolled = h.scrollHeight > h.clientHeight
       ? (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100
       : 0;
     progress.style.width = scrolled + '%';
+    if (progressLabel) {
+      progressLabel.textContent = '보고서 작성률 ' + Math.round(scrolled) + '%';
+    }
   }, { passive: true });
 
   // Reveal-on-scroll
