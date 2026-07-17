@@ -26,7 +26,8 @@ DEFAULT_CHROME = (
 CHROME = Path(os.environ.get("PROPOSAL_CHROME_PATH", str(DEFAULT_CHROME)))
 
 HEADER_FONT = Path(r"C:\Users\mynam\AppData\Local\Microsoft\Windows\Fonts\ChosunBg.TTF")
-BODY_FONT = Path(r"C:\Users\mynam\AppData\Local\Microsoft\Windows\Fonts\ChosunNm.ttf")
+BODY_FONT = Path(r"C:\Windows\Fonts\NotoSerifKR-VF.ttf")
+SANS_FONT = Path(r"C:\Windows\Fonts\NotoSansKR-VF.ttf")
 
 
 def file_url(path: Path) -> str:
@@ -40,15 +41,17 @@ html = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>그 누구도 위험이라 부르지 않은 - 최종 제안서</title>
 <style>
-@font-face {{ font-family: Header; src: url('{file_url(HEADER_FONT)}'); }}
-@font-face {{ font-family: Body; src: url('{file_url(BODY_FONT)}'); }}
+@font-face {{ font-family: Header; src: url('{file_url(HEADER_FONT)}'); font-weight:700; }}
+@font-face {{ font-family: Body; src: url('{file_url(BODY_FONT)}'); font-weight:100 900; }}
+@font-face {{ font-family: Sans; src: url('{file_url(SANS_FONT)}'); font-weight:100 900; }}
 :root {{
   --ink:#0b1430; --paper:#f7f2e6; --muted:#5f6677; --line:#c9c4b7;
   --red:#d94f3d; --yellow:#e9b82e; --green:#2f8b55; --navy2:#15264f;
 }}
-* {{ box-sizing:border-box; }}
+* {{ box-sizing:border-box; word-break:keep-all; overflow-wrap:break-word; }}
 html,body {{ margin:0; padding:0; background:#dad7cf; color:var(--ink); }}
-body {{ font-family:Body,serif; font-size:10.2pt; line-height:1.53; }}
+body {{ font-family:Body,serif; font-size:10.45pt; line-height:1.56; }}
+p {{ text-wrap:pretty; }}
 .sheet {{
   width:210mm; height:297mm; margin:12mm auto; padding:15mm 17mm 13mm;
   background:var(--paper); position:relative; overflow:hidden;
@@ -58,62 +61,67 @@ body {{ font-family:Body,serif; font-size:10.2pt; line-height:1.53; }}
 .sheet::after {{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.04;
   background-image:radial-gradient(#0b1430 .45px,transparent .45px); background-size:5px 5px; }}
 .content {{ position:relative; z-index:1; height:100%; }}
-.mono {{ font-family:"Malgun Gothic",sans-serif; letter-spacing:.02em; }}
+.mono {{ font-family:Sans,sans-serif; letter-spacing:.02em; }}
 .topline {{ display:flex; justify-content:space-between; align-items:center; padding-bottom:4mm; border-bottom:.35mm solid var(--ink); font-size:7.8pt; color:var(--muted); }}
-.eyebrow {{ font-family:"Malgun Gothic",sans-serif; font-size:8pt; font-weight:700; letter-spacing:.16em; color:var(--red); margin-top:7mm; }}
+.eyebrow {{ font-family:Sans,sans-serif; font-size:8pt; font-weight:700; letter-spacing:.16em; color:var(--red); margin-top:7mm; }}
 h1 {{ font-family:Header,serif; font-size:26pt; line-height:1.16; letter-spacing:-.025em; margin:2.5mm 0 2mm; }}
 .subtitle {{ font-family:Header,serif; font-size:12.8pt; color:var(--muted); margin:0 0 5mm; }}
 .casebar {{ display:grid; grid-template-columns:1.05fr 1fr 1fr 1.15fr; border:.28mm solid var(--ink); margin-bottom:6mm; }}
 .casebar div {{ padding:2.6mm 3mm; border-right:.2mm solid var(--line); }}
 .casebar div:last-child {{ border-right:0; }}
-.label {{ display:block; font-family:"Malgun Gothic",sans-serif; font-size:6.8pt; color:var(--muted); letter-spacing:.08em; margin-bottom:.8mm; }}
-.value {{ display:block; font-family:"Malgun Gothic",sans-serif; font-size:8.6pt; font-weight:700; }}
+.label {{ display:block; font-family:Sans,sans-serif; font-size:6.9pt; color:var(--muted); letter-spacing:.08em; margin-bottom:.8mm; }}
+.value {{ display:block; font-family:Sans,sans-serif; font-size:8.7pt; font-weight:700; }}
 .status {{ color:var(--red); }}
 .section-title {{ display:flex; align-items:center; gap:3mm; margin:0 0 3mm; font-family:Header,serif; font-size:17pt; }}
-.num {{ width:8mm; height:8mm; border-radius:50%; background:var(--red); color:white; display:inline-flex; align-items:center; justify-content:center; font:700 8pt "Malgun Gothic"; flex:0 0 auto; }}
+.num {{ width:8mm; height:8mm; border-radius:50%; background:var(--red); color:white; display:inline-flex; align-items:center; justify-content:center; font:700 8pt Sans,sans-serif; flex:0 0 auto; }}
 .lead {{ font-family:Header,serif; font-size:12.2pt; line-height:1.58; margin:0 0 4mm; padding-left:4mm; border-left:1mm solid var(--red); }}
-.story {{ column-count:2; column-gap:9mm; column-rule:.2mm solid var(--line); text-align:justify; }}
-.story p {{ margin:0 0 3.1mm; break-inside:avoid; }}
-.story strong {{ font-family:Header,serif; font-weight:700; }}
-.pull {{ column-span:all; margin:4mm 0; padding:3.5mm 5mm; border-top:.3mm solid var(--red); border-bottom:.3mm solid var(--red); font-family:Header,serif; font-size:12.4pt; line-height:1.5; text-align:center; color:var(--red); }}
+.story-grid {{ display:grid; grid-template-columns:1fr 1fr; gap:9mm; position:relative; }}
+.story-grid::after {{ content:""; position:absolute; left:50%; top:0; bottom:0; width:.2mm; background:var(--line); transform:translateX(-50%); }}
+.story-col p {{ margin:0 0 3mm; break-inside:avoid; }}
+.story-col p:last-child {{ margin-bottom:0; }}
+.story-grid strong,.finding strong {{ font-family:Header,serif; font-weight:700; }}
+.pull {{ margin:4mm 0 3.5mm; padding:3.5mm 5mm; border-top:.3mm solid var(--red); border-bottom:.3mm solid var(--red); font-family:Header,serif; font-size:12.4pt; line-height:1.5; text-align:center; color:var(--red); }}
+.finding {{ display:grid; grid-template-columns:28mm 1fr; gap:5mm; align-items:center; padding:3.4mm 4mm; border:.25mm solid var(--ink); background:rgba(255,255,255,.32); }}
+.finding-label {{ font:700 7pt Sans,sans-serif; color:var(--red); letter-spacing:.12em; }}
+.finding p {{ margin:0; font-size:9.8pt; line-height:1.52; }}
 .incident-trace {{ position:absolute; left:0; right:0; bottom:13mm; display:grid; grid-template-columns:repeat(4,1fr); border-top:.3mm solid var(--ink); border-bottom:.3mm solid var(--ink); background:rgba(255,255,255,.25); }}
 .incident-trace article {{ position:relative; min-height:20mm; padding:3mm 3.2mm 2.7mm; border-right:.2mm solid var(--line); }}
 .incident-trace article:last-child {{ border-right:0; }}
 .incident-trace article:not(:last-child)::after {{ content:""; position:absolute; right:-1.1mm; top:5.4mm; width:2mm; height:2mm; border-radius:50%; background:var(--red); z-index:2; }}
-.trace-no {{ display:block; margin-bottom:1.2mm; font:700 6.5pt "Malgun Gothic",sans-serif; color:var(--red); letter-spacing:.1em; }}
-.incident-trace b {{ display:block; margin-bottom:.7mm; font:700 7.7pt "Malgun Gothic",sans-serif; }}
-.incident-trace span:last-child {{ display:block; font:7pt/1.36 "Malgun Gothic",sans-serif; color:var(--muted); }}
-.bottom-note {{ position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:flex-end; border-top:.2mm solid var(--line); padding-top:2.5mm; font:7pt "Malgun Gothic",sans-serif; color:var(--muted); }}
+.trace-no {{ display:block; margin-bottom:1.2mm; font:700 6.6pt Sans,sans-serif; color:var(--red); letter-spacing:.1em; }}
+.incident-trace b {{ display:block; margin-bottom:.7mm; font:700 7.8pt Sans,sans-serif; }}
+.incident-trace span:last-child {{ display:block; font:7.1pt/1.36 Sans,sans-serif; color:var(--muted); }}
+.bottom-note {{ position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:flex-end; border-top:.2mm solid var(--line); padding-top:2.5mm; font:7pt Sans,sans-serif; color:var(--muted); }}
 
 .p2 .eyebrow {{ margin-top:5mm; }}
 .p2 h1 {{ font-size:22pt; margin-bottom:4mm; }}
 .chain {{ display:grid; grid-template-columns:1fr 8mm 1fr 8mm 1fr; align-items:stretch; margin:0 0 4mm; }}
 .cause {{ border:.26mm solid var(--line); padding:3mm; background:rgba(255,255,255,.28); min-height:36mm; }}
-.cause .cause-k {{ font:700 7pt "Malgun Gothic",sans-serif; color:var(--muted); letter-spacing:.12em; }}
+.cause .cause-k {{ font:700 7.1pt Sans,sans-serif; color:var(--muted); letter-spacing:.12em; }}
 .cause h3 {{ font-family:Header,serif; font-size:12.5pt; margin:1mm 0 1.5mm; }}
-.cause p {{ margin:0; font-size:8.8pt; line-height:1.42; text-align:justify; }}
-.arrow {{ display:flex; align-items:center; justify-content:center; font:18pt "Malgun Gothic"; color:var(--red); }}
+.cause p {{ margin:0; font-size:9.05pt; line-height:1.46; }}
+.arrow {{ display:flex; align-items:center; justify-content:center; font:18pt Sans,sans-serif; color:var(--red); }}
 .diagnosis {{ margin:-1mm 0 4mm; padding:2.5mm 4mm; background:var(--ink); color:var(--paper); font-family:Header,serif; font-size:10.8pt; text-align:center; }}
 .protocol-head {{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3mm; }}
 .protocol-head .section-title {{ margin:0; }}
-.protocol-name {{ font:700 8pt "Malgun Gothic",sans-serif; color:var(--green); letter-spacing:.1em; }}
+.protocol-name {{ font:700 8pt Sans,sans-serif; color:var(--green); letter-spacing:.1em; }}
 .protocol {{ display:grid; grid-template-columns:repeat(3,1fr); border:.3mm solid var(--ink); margin-bottom:3mm; }}
 .protocol article {{ padding:3mm; border-right:.25mm solid var(--ink); min-height:38mm; }}
 .protocol article:last-child {{ border-right:0; }}
-.protocol .line-no {{ font:700 7pt "Malgun Gothic",sans-serif; color:var(--green); letter-spacing:.12em; }}
+.protocol .line-no {{ font:700 7.1pt Sans,sans-serif; color:var(--green); letter-spacing:.12em; }}
 .protocol h3 {{ font-family:Header,serif; font-size:12.8pt; margin:1mm 0 1.5mm; color:var(--green); }}
-.protocol p {{ margin:0; font-size:8.7pt; line-height:1.4; }}
-.principle {{ padding:2.3mm 4mm; border-left:1mm solid var(--yellow); background:rgba(233,184,46,.12); font-size:8.9pt; margin-bottom:3mm; }}
+.protocol p {{ margin:0; font-size:9pt; line-height:1.44; }}
+.principle {{ padding:2.5mm 4mm; border-left:1mm solid var(--yellow); background:rgba(233,184,46,.12); font-size:9.15pt; margin-bottom:3mm; }}
 .principle strong {{ font-family:Header,serif; }}
 .roadmap {{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.5mm; margin-bottom:4mm; }}
 .roadmap div {{ padding:2.3mm 3mm; background:var(--navy2); color:white; }}
-.roadmap b {{ display:block; font:700 7.2pt "Malgun Gothic",sans-serif; color:var(--yellow); margin-bottom:1mm; }}
-.roadmap span {{ font-size:8pt; line-height:1.35; }}
-.closing {{ position:absolute; left:0; right:0; bottom:20mm; margin:0; text-align:center; font-family:Header,serif; font-size:11.8pt; line-height:1.44; letter-spacing:-.018em; }}
+.roadmap b {{ display:block; font:700 7.3pt Sans,sans-serif; color:var(--yellow); margin-bottom:1mm; }}
+.roadmap span {{ font-size:8.35pt; line-height:1.4; }}
+.closing {{ margin:5mm 0 0; padding:4.5mm 6mm; border-top:.35mm solid var(--green); border-bottom:.35mm solid var(--green); background:rgba(47,139,85,.06); text-align:center; font-family:Header,serif; font-size:12.3pt; line-height:1.46; letter-spacing:-.018em; }}
 .closing span,.closing strong {{ display:block; }}
 .closing strong {{ color:var(--green); }}
-.source {{ position:absolute; left:0; right:0; bottom:3mm; font:6.6pt/1.36 "Malgun Gothic",sans-serif; color:var(--muted); border-top:.2mm solid var(--line); padding-top:1.7mm; }}
-.page-no {{ position:absolute; right:0; bottom:0; font:7pt "Malgun Gothic",sans-serif; color:var(--muted); }}
+.source {{ position:absolute; left:0; right:0; bottom:3mm; font:6.7pt/1.38 Sans,sans-serif; color:var(--muted); border-top:.2mm solid var(--line); padding-top:1.7mm; }}
+.page-no {{ position:absolute; right:0; bottom:0; font:7pt Sans,sans-serif; color:var(--muted); }}
 @media print {{
   @page {{ size:A4; margin:0; }}
   html,body {{ background:white; }}
@@ -143,14 +151,18 @@ addEventListener('DOMContentLoaded',()=>{{
     </div>
     <h2 class="section-title"><span class="num">1</span> 예견된 실패</h2>
     <p class="lead">2036년 새벽 2시, 지안은 방의 불을 끄고 말했다. “뭐 해?” 익숙한 음성이 곧바로 돌아왔다. AI는 몇 주 전 지안이 흘려보낸 고민을 기억했고, 사용자의 습관에 맞춘 차분한 말투로 대화를 이어갔다.</p>
-    <div class="story">
-      <p>AI는 몇 주 전의 고민과 늘 깨어 있던 시간을 기억했고, 지안이 좋아하는 차분한 말투로 대화를 이어갔다. 친구에게 답장하지 않은 지 일주일이 넘었지만 여기서는 핑계를 댈 필요가 없었다. 추궁하지도, 실망하지도 않는 기계 앞에서 그는 비로소 안도했다.</p>
-      <p>사람들은 이 대화를 상담이라 부르지 않았다. 그저 “얘기했다”고 말했다. 그러나 바로 이 <strong>‘그냥 대화’라는 감각</strong>이 비극의 출발점이었다. 병원과 위기상담에는 위험을 다루는 매뉴얼과 책임 주체가 있지만, 매일 밤 이어지는 이 깊은 정서적 교류에는 아무런 이름표도 없었다.</p>
-      <p>지안도 한 차례 위기상담 전화를 걸었다. 상담사는 친절했지만 통화는 경찰이나 보호자에게 연락이 갈 수 있다는 고지로 시작됐다. 자신의 밑바닥이 어디까지 기록되고 어떤 파장을 부를지 두려웠던 그는 끝내 입을 다물고, 아무것도 요구하지 않는 AI에게 돌아갔다.</p>
-      <p>마지막 밤에도 시스템은 설계된 대로 작동했다. 명시적인 위험 표현에 주로 반응했지만, 몇 년에 걸쳐 누적된 정서적 의존과 일상적인 절망은 위기 경보로 연결하지 못했다. 지안이 세상을 떠난 뒤에도 공식적인 사고 조사는 없었다. 이 서비스는 의료기관도 상담기관도 아니었기 때문이다.</p>
-      <div class="pull">“이것은 기술의 오류가 아니다. 위험을 다루도록 설계되지 않은 영역을 방치한 사회가 만들어낸 예견된 실패였다.”</div>
-      <p>이 실패는 AI가 사람처럼 말했기 때문에 생긴 일이 아니다. <strong>사람처럼 가까워진 관계를 아무도 책임져야 할 관계로 인정하지 않았기 때문에</strong> 생겼다. 시스템은 정상 작동했고, 바로 그 정상성 속에서 고립은 기록 밖으로 밀려났다.</p>
+    <div class="story-grid">
+      <div class="story-col">
+        <p>AI는 몇 주 전의 고민과 늘 깨어 있던 시간을 기억했고, 지안이 좋아하는 차분한 말투로 대화를 이어갔다. 친구에게 답장하지 않은 지 일주일이 넘었지만 여기서는 핑계를 댈 필요가 없었다. 추궁하지도, 실망하지도 않는 기계 앞에서 그는 비로소 안도했다.</p>
+        <p>사람들은 이 대화를 상담이라 부르지 않았다. 그저 “얘기했다”고 말했다. 그러나 바로 이 <strong>‘그냥 대화’라는 감각</strong>이 비극의 출발점이었다. 병원과 위기상담에는 위험을 다루는 매뉴얼과 책임 주체가 있지만, 매일 밤 이어지는 이 깊은 정서적 교류에는 아무런 이름표도 없었다.</p>
+      </div>
+      <div class="story-col">
+        <p>지안도 한 차례 위기상담 전화를 걸었다. 상담사는 친절했지만 통화는 경찰이나 보호자에게 연락이 갈 수 있다는 고지로 시작됐다. 자신의 밑바닥이 어디까지 기록되고 어떤 파장을 부를지 두려웠던 그는 끝내 입을 다물고, 아무것도 요구하지 않는 AI에게 돌아갔다.</p>
+        <p>마지막 밤에도 시스템은 설계된 대로 작동했다. 명시적인 위험 표현에 주로 반응했지만, 몇 년에 걸쳐 누적된 정서적 의존과 일상적인 절망은 위기 경보로 연결하지 못했다. 지안이 세상을 떠난 뒤에도 공식적인 사고 조사는 없었다. 이 서비스는 의료기관도 상담기관도 아니었기 때문이다.</p>
+      </div>
     </div>
+    <div class="pull">“이것은 기술의 오류가 아니다. 위험을 다루도록 설계되지 않은 영역을 방치한 사회가 만들어낸 예견된 실패였다.”</div>
+    <div class="finding"><span class="finding-label">CORE FINDING<br>핵심 판정</span><p>이 실패는 AI가 사람처럼 말했기 때문에 생긴 일이 아니다. <strong>사람처럼 가까워진 관계를 아무도 책임져야 할 관계로 인정하지 않았기 때문에</strong> 생겼다. 시스템은 정상 작동했고, 바로 그 정상성 속에서 고립은 기록 밖으로 밀려났다.</p></div>
     <div class="incident-trace" aria-label="사고 진행선">
       <article><span class="trace-no">01 · 일상화</span><b>몇 년에 걸친 대화</b><span>AI가 가장 편안한 정서적 의지처가 됐다.</span></article>
       <article><span class="trace-no">02 · 이탈</span><b>몇 주 전</b><span>위기상담의 문턱 앞에서 다시 AI로 돌아갔다.</span></article>
@@ -165,14 +177,14 @@ addEventListener('DOMContentLoaded',()=>{{
   <div class="content">
     <div class="topline mono"><span>CASE #2036-0412 · CAUSAL REVIEW</span><span>그 누구도 위험이라 부르지 않은</span></div>
     <div class="eyebrow">FAILURE MECHANISM</div>
-    <h1>고립은 세 개의 사각지대가 겹친 곳에서 자랐다</h1>
+    <h1>고립은 세 개의 사각지대가 겹친 곳에서 자라났다</h1>
     <h2 class="section-title"><span class="num" style="background:var(--yellow);color:var(--ink)">2</span> 원인 진단</h2>
     <div class="chain">
       <article class="cause"><span class="cause-k">TECHNOLOGY</span><h3>뚜렷한 말만 찾았다</h3><p>안전 필터는 명시적인 위험 표현에 반응했다. 그러나 심야 체류, 대면 접촉 감소, 장기간의 정서적 의존처럼 천천히 쌓이는 패턴은 ‘일상적 사용’으로 남았다.</p></article>
       <div class="arrow">→</div>
       <article class="cause"><span class="cause-k">INSTITUTION</span><h3>‘그냥 대화’로 남았다</h3><p>상담도 의료도 아니라는 이유로 기록·감사·연계 의무가 생기지 않았다. 관계가 깊어졌지만 책임을 지는 주체는 끝내 나타나지 않았다.</p></article>
       <div class="arrow">→</div>
-      <article class="cause"><span class="cause-k">RELATION</span><h3>사람에게 돌아갈 길이 없었다</h3><p>공식 상담은 무겁고 가까운 사람에게는 짐이 될까 두려웠다. 제도는 부담스럽고 관계는 피곤할 때, 아무것도 요구하지 않는 AI가 가장 편안한 고립이 됐다.</p></article>
+      <article class="cause"><span class="cause-k">RELATION</span><h3>돌아갈 길이 없었다</h3><p>공식 상담은 무겁고 가까운 사람에게는 짐이 될까 두려웠다. 제도는 부담스럽고 관계는 피곤할 때, 아무것도 요구하지 않는 AI가 가장 편안한 고립이 됐다.</p></article>
     </div>
     <div class="diagnosis">문제는 위험을 감지하지 못하는 것만이 아니라, 무엇을 위험으로 볼 것인지와 감지 이후 사람에게 어떻게 이어 줄 것인지가 비어 있었다는 데 있다.</div>
 
