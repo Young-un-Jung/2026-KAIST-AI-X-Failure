@@ -95,3 +95,11 @@
 - 팀명과 페이지 번호를 Word 기본 꼬리말 기능으로만 추가했다(디자인 요소 없이).
 - 이전 디자인 버전 PDF와 생성 스크립트(`proposal-source/`)는 `archive/drafts/`, `archive/build-workbench/proposal-source-styled/`로 이동해 보존했다.
 - `assets/final-proposal.pdf`, 저장소 루트 `최종_제안서.pdf`를 새 순수 PDF로 교체하고 해시 일치를 확인했다.
+
+## 2026-07-18 · 포스터 통합 및 README 정비
+
+- 팀원이 전달한 포스터 최종본(`우린, 다시 사람에게 연결한다`)을 웹 해상도로 최적화해 `assets/poster.jpg`로 배치하고, 고해상도 원본은 `sources/poster-original/`에 보존했다.
+- 사건 보관소에 `EXHIBIT C · POSTER` 블록을 추가했다. 포스터의 실제 세로 비율에 맞춘 프레임을 써서 잘리는 부분 없이 전체가 보이고, 클릭하면 기존 라이트박스로 확대된다.
+- 헤드리스 크롬으로 데스크톱·모바일 스크린샷을 확인해 레이아웃과 줄바꿈이 정상인지 검증했다.
+- 웹에서 참조하지 않던 초기 포스터 초안(`assets/poster-wip.jpg`, 이미 `archive/supplementary/`에 보존된 것과 동일)과 초기 영상 초안(`assets/failure-film-v1.mp4`)을 정리했다. 초안 영상은 `archive/supplementary/failure-film-v1-draft.mp4`로 이동해 이력만 보존했다.
+- 루트 `README.md`의 `GitHub Desktop` 절(로컬 경로와 동기화 확인 방법을 안내하던 개인 작업 환경용 문구)을 제거하고, 포스터를 바로 보기·핵심 파일·프로젝트 구조 표에 반영했다.

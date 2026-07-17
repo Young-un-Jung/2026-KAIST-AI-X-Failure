@@ -13,6 +13,7 @@
 | 🌐 공개 사이트 (인터랙티브 사건 조사 경험) | https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/ |
 | 📄 최종 제안서 PDF | [`최종_제안서.pdf`](./최종_제안서.pdf) |
 | 🎬 사고 기록 영상 (65초) | [`assets/incident-report.mp4`](./assets/incident-report.mp4) |
+| 🖼️ 포스터 | [`assets/poster.jpg`](./assets/poster.jpg) |
 | 🎨 Figma (스토리보드 제작 보드) | [INCOM45_실패공모전](https://www.figma.com/design/NeuWLIoPZjSAY6PaBNKsl1/INCOM45_%EC%8B%A4%ED%8C%A8-%EA%B3%B5%EB%AA%A8%EC%A0%84?node-id=0-1&t=jgBEelUjbdtkfq2Q-1) |
 
 ## 핵심 파일
@@ -20,11 +21,12 @@
 | 경로 | 내용 |
 |---|---|
 | `index.html` | 공개 사이트 전체 (5단계 사건 조사 경험 + 사건 보관소) |
-| `assets/` | 사이트가 직접 서빙하는 영상·PDF·스토리보드 이미지 |
+| `assets/` | 사이트가 직접 서빙하는 영상·PDF·포스터·스토리보드 이미지 |
 | `submission/제안서_최종본.docx` \| `.pdf` \| `.txt` | 제출용 최종 제안서 (Word 원본 / PDF / 원문 텍스트) |
 | `submission/온라인_제출용_3단계_요약_최종.txt` | 온라인 신청서 "아이디어 요약" 입력용 텍스트 |
 | `video-source/` | 영상 Remotion 프로젝트 소스 |
 | `sources/storyboard-originals/` | 스토리보드 고해상도 원본 |
+| `sources/poster-original/` | 포스터 원본 (고해상도 PNG) |
 | `docs/` | 콘텐츠 결정 기준, 진행 기록, 작업 안내 |
 | `archive/` | 이전 초안·디자인 버전·제작 과정 백업 (현재 공개본에는 미사용) |
 
@@ -33,10 +35,10 @@
 ```text
 2026-KAIST-AI-X-Failure/
 ├── index.html            # 공개 사이트
-├── assets/                # 사이트용 영상·PDF·이미지
+├── assets/                # 사이트용 영상·PDF·포스터·이미지
 ├── submission/             # 최종 제출 원문·요약·제안서
 ├── video-source/           # 영상 제작 소스 (Remotion)
-├── sources/                # 스토리보드·음원 고해상도 원본
+├── sources/                # 스토리보드·포스터·음원 고해상도 원본
 ├── docs/                   # 콘텐츠 기준·진행 기록·작업 안내
 └── archive/                # 이전 버전·제작 과정 보관
 ```
@@ -53,7 +55,7 @@ Pre-Mortem(사전 실패 분석) 형식으로, 3단계로 구성된다.
 
 ## 사건 보관소 (Case Archive)
 
-공개 사이트 하단에는 본편 이후 이어지는 보관소가 있다: 완성 영상, 최종 제안서, 영상 스틸 3장, 실패·성공 두 시나리오로 갈라지는 스토리보드 8장씩. 포스터 최종본은 도착하는 대로 같은 보관소에 `EXHIBIT C · POSTER`로 추가할 예정이다.
+공개 사이트 하단에는 본편 이후 이어지는 보관소가 있다: 완성 영상(`EXHIBIT A · FILM`), 최종 제안서, 영상 스틸 3장, 실패·성공 두 시나리오로 갈라지는 스토리보드 8장씩(`EXHIBIT B · STORYBOARD`), 그리고 포스터(`EXHIBIT C · POSTER`).
 
 ## 로컬에서 사이트 확인하기
 
@@ -67,11 +69,3 @@ python -m http.server 8080
 
 - 배경음: [Pixabay · Dark Ambient](https://pixabay.com/music/ambient-dark-ambient-543982/)
 - 효과음: [Pixabay · Stamp](https://pixabay.com/sound-effects/film-special-effects-stamp-81635/)
-
-## GitHub Desktop
-
-```text
-C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure
-```
-
-이 폴더 자체가 로컬 저장소다. `main`과 `origin/main`이 동기화됐는지는 GitHub Desktop에서 확인한다.

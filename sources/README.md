@@ -13,3 +13,8 @@
 
 - `storyboard-originals/`: 팀원이 전달한 16:9 고해상도 원본 14장과 Figma 순서 기록
 - 공개 사이트는 `assets/storyboard/`의 경량화 사본을 사용한다.
+
+## 포스터
+
+- `poster-original/poster-final.png`: 팀원이 제작한 포스터 최종본 고해상도 원본(2382×3368)
+- 공개 사이트는 `assets/poster.jpg`의 경량화 사본을 사용한다.
