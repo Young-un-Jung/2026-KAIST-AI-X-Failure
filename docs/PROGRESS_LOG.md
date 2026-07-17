@@ -24,3 +24,13 @@
 - 합의되지 않은 연도별 로드맵 대신 위험의 기준·AI 역할·기존 공간 연결이라는 세 논의 기준으로 수정했다.
 - 영상에 사용한 Pixabay 배경음과 효과음의 원본 URL을 기록했다.
 - 작업공간과 실제 Git 저장소의 차이를 README와 작업공간 안내서에 기록했다.
+
+## 2026-07-17 · GitHub Desktop 기준 통합 저장소 구성
+
+- GitHub Desktop에서 클론한 `C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure`을 새로운 기준 작업공간으로 확정했다.
+- 최종 합의 원문·온라인 요약·최종 PDF를 `submission/`에 모았다.
+- 이전 DOCX/PDF와 보완자료 이미지를 `archive/`에 보존했다.
+- Remotion 저장소의 추적 파일 51개를 `video-source/`로 통합했다.
+- 원격이 없던 기존 영상 저장소의 전체 Git 이력을 `archive/git-bundles/video-history.bundle`로 백업했다.
+- 픽사베이 원본 음원을 `sources/audio-originals/`에 보존했다.
+- 임시 렌더링 파일, 경쟁작 클론, `node_modules`, 중첩 `.git`은 통합 대상에서 제외했다.

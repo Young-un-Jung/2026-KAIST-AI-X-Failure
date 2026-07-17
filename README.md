@@ -1,41 +1,38 @@
 # 그 누구도 위험이라 부르지 않은
 
-2026 KAIST AI × 실패 아이디어 공모전 팀 INCOM 45의 공개 보완자료 사이트입니다.
+2026 KAIST AI × 실패 아이디어 공모전 팀 INCOM 45의 통합 프로젝트 저장소입니다. 공개 사이트와 최종 제출물, 영상 소스, 작업 기록을 한곳에서 관리합니다.
 
-- 공개 주소: https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/
-- 저장소: https://github.com/Young-un-Jung/2026-KAIST-AI-X-Failure
-- 배포 방식: `main` 브랜치의 루트 디렉터리를 사용하는 GitHub Pages
+- 공개 사이트: https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/
+- 원격 저장소: https://github.com/Young-un-Jung/2026-KAIST-AI-X-Failure
+- 배포 방식: `main` 브랜치 루트의 GitHub Pages
 
-## 디렉터리 구조
+## 구조
 
-- `index.html`: 5단계 사건 조사형 웹 경험
-- `assets/incident-report.mp4`: 최종 사건 기록 영상
-- `assets/incident-poster.jpg`: 영상 포스터
-- `assets/final-proposal.pdf`: 최종 2페이지 제안서
-- `docs/STATUS.md`: 현재 상태와 남은 확인 사항
-- `docs/PROGRESS_LOG.md`: 변경 이력
-- `docs/CONTENT_DECISIONS.md`: 팀 합의문과 사이트 표현의 관계
+- `index.html`, `assets/`: 실제 공개 사이트와 배포 자산
+- `submission/`: 팀 합의 원문, 온라인 요약, 최종 제안서
+- `proposal-source/`: 최종 PDF 생성 스크립트와 인쇄용 HTML
+- `video-source/`: Remotion 영상 소스와 추적되는 오디오 파일
+- `sources/`: 외부 음원의 원본 파일과 출처
+- `archive/`: 이전 DOCX/PDF, 보완자료 이미지, 제작 과정 파일, 영상 저장소 백업
+- `docs/`: 현재 상태, 진행 기록, 콘텐츠 결정, 작업 안내
 
-## 로컬 확인
+## GitHub Desktop
 
-이 저장소는 상위 작업 폴더가 아니라 `site` 폴더 자체입니다.
+GitHub Desktop에서는 이 폴더 자체를 로컬 저장소로 선택합니다.
+
+```text
+C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure
+```
+
+최신 상태는 `main` 브랜치와 `origin/main`이 같은지 확인합니다. 사이트는 루트의 `index.html`을 사용하므로 디렉터리를 옮기지 않습니다.
+
+## 로컬 사이트 확인
 
 ```bash
-cd site
 python -m http.server 8080
 ```
 
 브라우저에서 `http://localhost:8080`을 엽니다.
-
-## Git 작업
-
-상위 작업 폴더에서 `git status`를 실행하면 저장소가 아니라는 메시지가 나올 수 있습니다. 새로 클론할 필요 없이 아래처럼 `site`로 이동합니다.
-
-```bash
-cd site
-git status
-git pull --ff-only
-```
 
 ## 음원 출처
 

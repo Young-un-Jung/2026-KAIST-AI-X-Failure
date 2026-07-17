@@ -1,0 +1,6 @@
+Total paragraphs: 25
+[0] title: 그 누구도 위험이라 부르지 않은
+[11]: 둘째, '일상 대화'라는 이름의 위장이다. 이 깊은 정서적 교류가 상담이나 의료가 아니라 '그냥 대화'로 취급되는 한, 사회적인 보호망은 미치지 못한다. 사람들은 이미 AI를 정신적 의지처로 삼고 있지만(12~21세 응답자 중 정신건강 고민을 AI 챗봇에게 먼저 구한 비율이 8명 중 1명에 달한다는 조사도 있다2) 법적으로 이 서비스는 위기 개입을 강제할 의무가 없다. 위험이 버젓이 존재하지만 아무도 위험이라 부르지 않는 모호함이 비극을 방치하고 있다.
+[-1]: ² Brown University School of Public Health (2025.11.18), "One in eight adolescents and young adults use AI chatbots for mental health advice."
+[-2]: ¹ 경기연구원, 「AI를 활용한 정신건강 정책 현황 및 개선 방안」(2026); 세계일보, "낙인 피해… 'AI 상담' 찾는 우울증 고위험군"(2026.3.18) 재인용.
+title has border: True

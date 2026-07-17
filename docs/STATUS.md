@@ -10,6 +10,15 @@
 - 주 영상: `assets/incident-report.mp4`
 - 제안서: `assets/final-proposal.pdf`
 
+## 통합 저장소
+
+- 기준 로컬 경로: `C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure`
+- 최종 제출 원문과 PDF: `submission/`
+- PDF 생성 소스: `proposal-source/`
+- 영상 소스: `video-source/`
+- 이전 작업본과 영상 저장소 이력 백업: `archive/`
+- 기존 바탕화면 작업공간은 통합 검증이 끝날 때까지 삭제하지 않는다.
+
 ## 콘텐츠 기준
 
 팀의 최종 합의문인 「그 누구도 위험이라 부르지 않은」의 세 축을 기준으로 한다.
