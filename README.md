@@ -3,6 +3,7 @@
 2026 KAIST AI × 실패 아이디어 공모전 팀 INCOM 45의 통합 프로젝트 저장소입니다. 공개 사이트와 최종 제출물, 영상 소스, 작업 기록을 한곳에서 관리합니다.
 
 - 팀원: 정영운 · 우연정 · 이유빈
+- **최종 제안서 PDF: [`최종_제안서.pdf`](./최종_제안서.pdf)** (저장소 루트, 클릭하면 바로 열림)
 
 - 공개 사이트: https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/
 - 원격 저장소: https://github.com/Young-un-Jung/2026-KAIST-AI-X-Failure

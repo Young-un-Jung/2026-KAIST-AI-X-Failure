@@ -19,6 +19,7 @@ SITE_ASSETS = ROOT / "assets"
 HTML_PATH = WORK / "proposal_final_C.html"
 ROOT_PDF = ROOT / "submission" / "제안서_최종_C_연결선.pdf"
 SITE_PDF = SITE_ASSETS / "final-proposal.pdf"
+TOP_LEVEL_PDF = ROOT / "최종_제안서.pdf"
 DEFAULT_CHROME = (
     ROOT / "video-source" / "node_modules" / ".remotion" / "chrome-headless-shell"
     / "win64" / "chrome-headless-shell-win64" / "chrome-headless-shell.exe"
@@ -238,9 +239,11 @@ def run() -> None:
             + result.stderr.decode("utf-8", errors="replace")[-3000:]
         )
     shutil.copy2(ROOT_PDF, SITE_PDF)
+    shutil.copy2(ROOT_PDF, TOP_LEVEL_PDF)
     print(f"Wrote {HTML_PATH}")
     print(f"Wrote {ROOT_PDF} ({ROOT_PDF.stat().st_size} bytes)")
     print(f"Wrote {SITE_PDF} ({SITE_PDF.stat().st_size} bytes)")
+    print(f"Wrote {TOP_LEVEL_PDF} ({TOP_LEVEL_PDF.stat().st_size} bytes)")
 
 
 if __name__ == "__main__":

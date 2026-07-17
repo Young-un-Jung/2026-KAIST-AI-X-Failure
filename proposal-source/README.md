@@ -9,4 +9,4 @@
 python proposal-source/build_final_submission.py
 ```
 
-출력 파일은 `submission/제안서_최종_C_연결선.pdf`와 `assets/final-proposal.pdf`에 동시에 기록된다.
+출력 파일은 `submission/제안서_최종_C_연결선.pdf`, `assets/final-proposal.pdf`, 저장소 루트의 `최종_제안서.pdf`(찾기 쉬운 사본) 세 곳에 동시에 기록된다.

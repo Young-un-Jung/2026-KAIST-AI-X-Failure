@@ -4,4 +4,4 @@
 - `온라인_제출용_3단계_요약_최종.txt`: 온라인 신청서 입력용
 - `제안서_최종_C_연결선.pdf`: 최종 2페이지 PDF
 
-공개 사이트용 PDF 사본은 `../assets/final-proposal.pdf`다. 두 PDF는 항상 같은 파일이어야 한다.
+공개 사이트용 PDF 사본은 `../assets/final-proposal.pdf`, 찾기 쉬운 루트 사본은 `../최종_제안서.pdf`다. 세 PDF는 항상 같은 파일이어야 한다.
