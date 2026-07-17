@@ -279,6 +279,20 @@
   .act:nth-child(2) .num { color: var(--yellow); }
   .act:nth-child(3) .num { color: var(--green); }
   .act h3 { margin: 0 0 14px; font-size: 22px; }
+  .field-label {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--yellow);
+    width: 0;
+  }
+  .field-label.is-visible {
+    animation: typeIn 0.9s steps(20, end) forwards;
+  }
+  @keyframes typeIn { to { width: 100%; border-right-color: transparent; } }
+  @media (prefers-reduced-motion: reduce) {
+    .field-label { width: auto; border-right: none; animation: none; }
+  }
   .act blockquote {
     margin: 0 0 16px;
     padding-left: 18px;
@@ -451,8 +465,8 @@
 
 <section>
   <div class="wrap">
-    <div class="section-kicker mono">1-PAGE 제안서 요약</div>
-    <h2 class="section-title reveal">예견된 실패 · 원인 진단 · 대응 방안</h2>
+    <div class="section-kicker mono">§2 · 조사 기록</div>
+    <h2 class="section-title reveal">사건 경위 · 원인 분석 · 재발 방지 대책</h2>
     <div class="acts">
       <div class="act reveal">
         <div class="num">
@@ -460,7 +474,7 @@
           <span>01</span>
         </div>
         <div>
-          <h3>예견된 실패</h3>
+          <h3><span class="field-label reveal">예견된 실패</span></h3>
           <blockquote>"어떤 공식적인 사고 조사도 이루어지지 않았다. <br>기계는 뚜렷한 위험 단어는 놓치지 않았고, 이 서비스는 애초에 공식 의료망도 아니었기 때문이다."</blockquote>
           <p class="body">2036년, 지안은 몇 년에 걸쳐 AI에게만 속마음을 털어놓다 홀로 세상을 떠났습니다.<br><br>시스템은 모든 대화를 정확히 기억했지만, 단 한 번도 그것을 위험이라 부르지 않았습니다.</p>
         </div>
@@ -471,7 +485,7 @@
           <span>02</span>
         </div>
         <div>
-          <h3>원인 진단</h3>
+          <h3><span class="field-label reveal">원인 진단</span></h3>
           <blockquote>"위험이 버젓이 존재하지만 아무도 위험이라 부르지 않는 모호함이 비극을 방치하고 있다."</blockquote>
           <p class="body">기술적 필터링은 뚜렷한 위험 신호만 감지할 뿐, 조용히 누적되는 정서적 의존은 분류하지 못합니다.<br><br>이 교류가 '그냥 대화'로 취급되는 한 사회적 안전망은 닿지 않고, <br>현실의 상담 제도는 문턱이 높아 사람들은 인간 대신 기계 곁에 머뭅니다.<br><br>실제로 한 조사에서 중증 우울 상태에 있는 사람들의 AI 상담 경험률(53%)은 그렇지 않은 사람들(27%)의 두 배에 달했습니다.</p>
         </div>
@@ -482,7 +496,7 @@
           <span>03</span>
         </div>
         <div>
-          <h3>대응 방안</h3>
+          <h3><span class="field-label reveal">대응 방안</span></h3>
           <blockquote>"AI의 역할은 위로를 건네는 상담사가 아니라 '연결자'가 되어야 한다."</blockquote>
           <p class="body">도서관·청년센터·주민센터 같은 이미 존재하는 공간을 활용해, <br>AI가 사용자를 지역사회의 느슨한 연대로 안내하는 역할에 머물러야 합니다.<br><br>핫라인 번호를 띄우고 대화를 끊는 대신, <br>가족처럼 부담스럽지도 병원처럼 딱딱하지도 않은 '제3의 공간'을 자연스럽게 제안하는 것입니다.</p>
         </div>
