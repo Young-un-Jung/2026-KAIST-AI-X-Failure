@@ -1,626 +1,431 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" class="no-js">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>그 누구도 위험이라 부르지 않은 — TEAM INCOM 45</title>
-<meta name="description" content="2026 KAIST AI x 실패 아이디어 공모전 · 미래에서 온 오답노트 제출작 보완자료 (TEAM INCOM 45, 비공식)" />
+<title>그 누구도 위험이라 부르지 않은 — 사건 #2036-0412</title>
+<meta name="description" content="2036년, AI는 모든 대화를 기억했지만 한 사람의 고립을 위험이라 부르지 않았다. 사건 기록을 검토하고 보고서를 완성하는 프리모템 프로젝트." />
+<meta name="theme-color" content="#0B1430" />
+<meta property="og:title" content="그 누구도 위험이라 부르지 않은" />
+<meta property="og:description" content="당신이 처음 완성하는 사건 #2036-0412의 사고 조사 보고서" />
+<meta property="og:image" content="assets/incident-poster.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@500;700;900&family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className='js';</script>
 <style>
   :root {
-    --navy: #0B1430;
-    --navy-panel: #101B3E;
-    --line: #24325C;
-    --cream: #F2ECDC;
-    --cream-dim: #9BA3BE;
-    --green: #3FA65C;
-    --yellow: #F5C63C;
-    --alert: #E4573D;
-    --warm: #B58A2C;
-    --warm-dark: #241A0E;
+    --navy:#0B1430; --navy-2:#101B3E; --navy-3:#172651; --line:#293965;
+    --cream:#F5F0E3; --cream-dim:#A8AEC2; --paper:#EDE5D2;
+    --red:#E4573D; --yellow:#F5C63C; --green:#3FA65C; --warm:#B58A2C;
+    --shadow:0 30px 80px rgba(0,0,0,.38);
   }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--navy);
-    color: var(--cream);
-    font-family: 'Noto Sans KR', sans-serif;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-  .mono { font-family: 'Nanum Gothic Coding', monospace; }
-  .serif { font-family: 'Noto Serif KR', serif; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--navy); color:var(--cream); font-family:'Noto Sans KR',sans-serif; line-height:1.75; overflow-x:hidden; }
+  button,a { font:inherit; }
+  button:focus-visible,a:focus-visible { outline:3px solid var(--yellow); outline-offset:4px; }
+  a { color:inherit; }
+  .mono { font-family:'Nanum Gothic Coding',monospace; }
+  .serif { font-family:'Noto Serif KR',serif; }
+  .wrap { width:min(1120px,calc(100% - 48px)); margin:0 auto; }
+  .grain { position:fixed; inset:0; z-index:90; pointer-events:none; opacity:.03; mix-blend-mode:overlay; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .progress { position:fixed; top:0; left:0; width:0; height:3px; z-index:220; background:linear-gradient(90deg,var(--red),var(--yellow),var(--green)); transition:width .45s ease; }
+  .js .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease,transform .7s ease; }
+  .js .reveal.is-visible { opacity:1; transform:none; }
 
-  /* ---------- Grain texture ---------- */
-  .grain {
-    position: fixed;
-    inset: 0;
-    z-index: 150;
-    pointer-events: none;
-    opacity: 0.035;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
+  .report-dock { position:fixed; top:16px; left:50%; transform:translateX(-50%); z-index:210; width:min(760px,calc(100% - 32px)); display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:16px; padding:9px 14px; border:1px solid rgba(245,240,227,.15); border-radius:12px; background:rgba(11,20,48,.88); box-shadow:0 12px 35px rgba(0,0,0,.25); backdrop-filter:blur(14px); }
+  .dock-label { color:var(--cream-dim); font-size:11px; white-space:nowrap; }
+  .dock-steps { display:flex; gap:7px; justify-content:center; }
+  .dock-step { width:10px; height:10px; border-radius:50%; border:1px solid var(--cream-dim); background:transparent; transition:.3s ease; }
+  .dock-step.done { border-color:var(--green); background:var(--green); box-shadow:0 0 14px rgba(63,166,92,.55); }
+  .dock-count { color:var(--yellow); font-size:12px; font-weight:700; white-space:nowrap; }
 
-  /* ---------- Scroll progress ---------- */
-  .progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px; width: 0%;
-    background: linear-gradient(90deg, var(--alert), var(--yellow), var(--green));
-    z-index: 200;
-  }
-  .report-progress-label {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 200;
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: var(--cream-dim);
-    background: rgba(11,20,48,0.75);
-    padding: 3px 10px;
-    border-radius: 999px;
-    pointer-events: none;
-  }
-  @media (max-width: 640px) { .report-progress-label { display: none; } }
+  section { padding:110px 0; position:relative; }
+  .hero { min-height:100vh; display:grid; place-items:center; padding:130px 0 100px; background:radial-gradient(ellipse 820px 480px at 28% 18%,rgba(228,87,61,.18),transparent 65%),radial-gradient(circle at 76% 72%,rgba(245,198,60,.09),transparent 28%),var(--navy); }
+  .hero-grid { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(320px,.72fr); gap:70px; align-items:center; }
+  .kicker { color:var(--red); font-size:12px; letter-spacing:.16em; margin-bottom:22px; }
+  h1 { font-family:'Noto Serif KR',serif; font-size:clamp(42px,6vw,72px); line-height:1.22; letter-spacing:-.04em; margin:0 0 26px; }
+  .hero-lede { max-width:650px; margin:0 0 36px; color:var(--cream-dim); font-size:clamp(17px,2vw,21px); }
+  .hero-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .action-btn,.secondary-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; border-radius:999px; padding:12px 22px; cursor:pointer; text-decoration:none; transition:transform .2s ease,background .25s ease,border-color .25s ease; }
+  .action-btn { border:1px solid var(--red); background:var(--red); color:white; font-weight:700; }
+  .action-btn:hover { transform:translateY(-2px); background:#ef624c; }
+  .action-btn.green { border-color:var(--green); background:var(--green); }
+  .action-btn.yellow { border-color:var(--yellow); background:var(--yellow); color:var(--navy); }
+  .action-btn:disabled { cursor:default; opacity:.5; transform:none; }
+  .secondary-btn { border:1px solid var(--line); background:rgba(255,255,255,.03); color:var(--cream); }
+  .secondary-btn:hover { border-color:var(--cream-dim); transform:translateY(-2px); }
+  .case-sheet { position:relative; padding:30px; background:var(--paper); color:var(--navy); border-radius:4px; box-shadow:var(--shadow); transform:rotate(1deg); }
+  .case-sheet::before { content:"비공식 조사 기록"; position:absolute; right:22px; top:22px; padding:5px 9px; border:2px solid var(--red); color:var(--red); font:700 11px 'Nanum Gothic Coding',monospace; transform:rotate(4deg); }
+  .case-sheet h2 { font-family:'Noto Serif KR',serif; font-size:25px; line-height:1.3; margin:38px 0 24px; }
+  .sheet-row { display:flex; justify-content:space-between; gap:18px; padding:11px 0; border-bottom:1px solid rgba(11,20,48,.17); font-size:13px; }
+  .sheet-row span:first-child { color:#697083; }
+  .sheet-row strong { text-align:right; }
+  .sheet-row .pending { color:var(--red); }
+  .sheet-sign { margin-top:30px; padding-top:12px; border-top:1px solid var(--navy); font-size:12px; color:#697083; }
 
-  /* ---------- Reveal-on-scroll ---------- */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { transition: none; opacity: 1; transform: none; }
-    .scroll-cue, .rec { animation: none !important; }
-  }
+  .section-kicker { font-size:12px; color:var(--yellow); letter-spacing:.17em; margin-bottom:13px; }
+  .section-title { font-family:'Noto Serif KR',serif; font-size:clamp(30px,4.5vw,48px); line-height:1.35; letter-spacing:-.025em; margin:0 0 24px; }
+  .section-lede { max-width:760px; color:var(--cream-dim); font-size:17px; margin:0 0 42px; }
+  .case-intake { border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:linear-gradient(180deg,var(--navy),#0d1737); }
+  .intake-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:70px; }
+  .meta-card { border:1px solid var(--line); border-radius:14px; overflow:hidden; align-self:start; }
+  .meta-row { display:flex; justify-content:space-between; gap:22px; padding:15px 18px; background:var(--navy-2); border-bottom:1px solid var(--line); font-size:13px; }
+  .meta-row:last-child { border-bottom:0; }
+  .meta-row span:first-child { color:var(--cream-dim); }
+  .meta-row strong { text-align:right; }
+  .meta-row .pending { color:var(--red); }
+  .intake-copy { color:var(--cream-dim); }
+  .intake-copy strong { color:var(--cream); }
+  .note { margin-top:26px; padding:16px 18px; border-left:3px solid var(--yellow); background:rgba(245,198,60,.07); color:var(--cream-dim); font-size:13px; }
 
-  /* ---------- Hero ---------- */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    background:
-      radial-gradient(ellipse 900px 500px at 30% 20%, rgba(228,87,61,0.16), transparent 60%),
-      radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/44px 44px,
-      var(--navy);
-    padding: 120px 32px;
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    box-shadow: inset 0 0 220px 90px rgba(3,6,16,0.55);
-    pointer-events: none;
-  }
-  .kicker {
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: var(--cream-dim);
-    margin-bottom: 28px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.9s ease forwards;
-  }
-  .rec { color: var(--alert); animation: blink 1.6s steps(2) infinite; }
-  @keyframes blink { 50% { opacity: .2; } }
-  .hero h1 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(34px, 6vw, 62px);
-    font-weight: 900;
-    line-height: 1.35;
-    margin: 0 0 30px;
-    max-width: 900px;
-    z-index: 1;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.15s forwards;
-  }
-  .hero p.lede {
-    font-size: clamp(16px, 2.4vw, 20px);
-    color: var(--cream-dim);
-    max-width: 640px;
-    z-index: 1;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.3s forwards;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .scroll-cue {
-    margin-top: 60px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--cream-dim);
-    z-index: 1;
-    animation: bob 2.2s ease-in-out infinite;
-  }
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); opacity: .6; }
-    50% { transform: translateY(8px); opacity: 1; }
-  }
+  .evidence { background:var(--navy-2); border-bottom:1px solid var(--line); }
+  .video-frame { overflow:hidden; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); background:#050a18; }
+  video { display:block; width:100%; aspect-ratio:16/9; background:#050a18; }
+  .video-caption { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; margin:18px 0 30px; color:var(--cream-dim); font-size:13px; }
+  .evidence-panel { padding:26px; border:1px solid var(--line); border-radius:14px; background:rgba(11,20,48,.68); }
+  .panel-title { font-family:'Noto Serif KR',serif; font-size:21px; margin:0 0 8px; }
+  .panel-help { color:var(--cream-dim); font-size:13px; margin:0 0 18px; }
+  .evidence-list { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+  .evidence-chip { min-height:92px; padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--navy-2); color:var(--cream); text-align:left; cursor:pointer; transition:.25s ease; }
+  .evidence-chip:hover { border-color:var(--yellow); }
+  .evidence-chip[aria-pressed="true"] { border-color:var(--green); background:rgba(63,166,92,.12); }
+  .evidence-chip b { display:block; color:var(--yellow); font-size:11px; margin-bottom:6px; }
+  .evidence-chip[aria-pressed="true"] b { color:var(--green); }
+  .confirm-row { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .micro-status { color:var(--cream-dim); font-size:12px; }
 
-  /* ---------- Section shell ---------- */
-  section { padding: 110px 0; }
-  .section-kicker {
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--yellow);
-    margin-bottom: 16px;
-  }
-  h2.section-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(26px, 4vw, 38px);
-    font-weight: 700;
-    margin: 0 0 46px;
-    max-width: 760px;
-    line-height: 1.4;
-  }
+  .causes { background:var(--navy); }
+  .cause-chain { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:42px 0 28px; }
+  .cause-card { position:relative; padding:30px; border:1px solid var(--line); border-radius:14px; background:var(--navy-2); min-height:310px; }
+  .cause-card:not(:last-child)::after { content:"→"; position:absolute; right:-23px; top:50%; z-index:2; color:var(--red); font-size:24px; transform:translateY(-50%); }
+  .cause-no { color:var(--yellow); font-size:11px; letter-spacing:.13em; }
+  .cause-card h3 { font-family:'Noto Serif KR',serif; font-size:24px; line-height:1.4; margin:12px 0 16px; }
+  .cause-card p { color:var(--cream-dim); margin:0; font-size:14px; }
+  .diagnosis-strip { padding:18px 22px; background:var(--paper); color:var(--navy); font-family:'Noto Serif KR',serif; font-size:18px; font-weight:700; text-align:center; margin-bottom:24px; }
 
-  /* ---------- About ---------- */
-  .about-section { border-bottom: 1px solid var(--line); }
-  .about-body {
-    max-width: 720px;
-    font-size: 16px;
-    color: var(--cream-dim);
-  }
-  .about-body strong { color: var(--cream); font-weight: 700; }
-  .case-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-width: 420px;
-    margin: 28px 0 30px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .case-meta-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 16px;
-    font-size: 13px;
-    background: var(--navy-panel);
-  }
-  .case-meta-row:nth-child(even) { background: rgba(16,27,62,0.5); }
-  .case-meta-row span:first-child { color: var(--cream-dim); }
-  .case-meta-value.pending { color: var(--alert); font-weight: 700; }
-  .about-note {
-    margin-top: 26px;
-    padding: 16px 20px;
-    border-left: 3px solid var(--yellow);
-    background: rgba(245,198,60,0.06);
-    font-size: 14px;
-    color: var(--cream-dim);
-    max-width: 720px;
-  }
+  .protocol-section { background:linear-gradient(180deg,var(--navy-2),#132448); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .protocol-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:38px 0 22px; }
+  .protocol-card { padding:30px; background:rgba(11,20,48,.45); border-right:1px solid var(--line); }
+  .protocol-card:last-child { border-right:0; }
+  .protocol-line { color:var(--green); font-size:11px; letter-spacing:.13em; }
+  .protocol-card h3 { font-family:'Noto Serif KR',serif; color:#75c792; font-size:24px; margin:12px 0; }
+  .protocol-card p { color:var(--cream-dim); margin:0; font-size:14px; }
+  .ethics-note { padding:18px 20px; border-left:3px solid var(--yellow); background:rgba(245,198,60,.08); margin-bottom:24px; color:var(--cream-dim); }
+  .ethics-note strong { color:var(--cream); }
+  .roadmap { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 28px; }
+  .roadmap div { padding:17px; border:1px solid rgba(245,240,227,.13); border-radius:10px; }
+  .roadmap b { display:block; color:var(--yellow); font-size:12px; margin-bottom:7px; }
+  .roadmap span { color:var(--cream-dim); font-size:13px; }
 
-  /* ---------- Video ---------- */
-  .video-section { background: var(--navy-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .video-frame {
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 40px 90px rgba(0,0,0,0.5);
-    border: 1px solid var(--line);
-    transition: border-color 0.35s ease;
-  }
-  .video-frame:hover { border-color: rgba(242,236,220,0.3); }
-  video { width: 100%; display: block; background: #000; }
-  .video-caption {
-    margin-top: 22px;
-    font-size: 14px;
-    color: var(--cream-dim);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .version-toggle { margin-top: 40px; }
-  .version-toggle summary {
-    cursor: pointer;
-    font-size: 13px;
-    letter-spacing: 1px;
-    color: var(--cream-dim);
-    list-style: none;
-    user-select: none;
-    transition: color 0.25s ease;
-  }
-  .version-toggle summary::-webkit-details-marker { display: none; }
-  .version-toggle summary:hover { color: var(--yellow); }
-  .version-toggle[open] summary { color: var(--yellow); margin-bottom: 22px; }
-  .version-toggle .video-frame { max-width: 640px; border-radius: 10px; }
-  .version-note {
-    margin-top: 14px;
-    font-size: 13px;
-    color: var(--cream-dim);
-    max-width: 640px;
-  }
+  .verdict { min-height:92vh; display:grid; place-items:center; text-align:center; background:linear-gradient(180deg,var(--navy) 0%,#182956 40%,#4b4260 68%,#8b6d32 100%); overflow:hidden; }
+  .verdict::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse 720px 380px at 50% 100%,rgba(245,198,60,.4),transparent 70%); }
+  .verdict .wrap { position:relative; z-index:1; }
+  .verdict-card { width:min(650px,100%); margin:0 auto 28px; padding:24px; border:1px solid rgba(245,240,227,.25); border-radius:14px; background:rgba(11,20,48,.42); backdrop-filter:blur(8px); }
+  .verdict-row { display:flex; justify-content:space-between; gap:18px; padding:12px 0; border-bottom:1px solid rgba(245,240,227,.15); font-size:13px; }
+  .verdict-row:last-child { border-bottom:0; }
+  .verdict-row span:first-child { color:var(--cream-dim); }
+  .verdict-row strong { text-align:right; }
+  .verdict-row .pending { color:var(--red); }
+  .verdict-btn { border-color:var(--red); background:var(--red); }
+  .verdict-btn.stamped { border-color:var(--green); background:var(--green); animation:stamp .35s ease; }
+  @keyframes stamp { 25%{transform:rotate(-1deg) scale(1.02)} 75%{transform:rotate(1deg) scale(.99)} }
+  .thesis { font-family:'Noto Serif KR',serif; font-size:clamp(27px,4vw,43px); font-weight:700; line-height:1.5; margin:42px auto 0; max-width:860px; }
+  .thesis em { color:var(--yellow); font-style:normal; }
+  .completion { display:none; margin-top:34px; }
+  .completion.show { display:block; animation:fade .5s ease; }
+  .completion-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px; }
+  @keyframes fade { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
 
-  /* ---------- Three act ---------- */
-  .acts { display: flex; flex-direction: column; gap: 28px; }
-  .act {
-    background: var(--navy-panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 40px 44px;
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 28px;
-    transition: transform 0.35s ease, border-color 0.35s ease;
-  }
-  .act:hover { transform: translateY(-4px); border-color: rgba(242,236,220,0.28); }
-  .act .num {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    opacity: .75;
-  }
-  .act .num svg { width: 26px; height: 26px; }
-  .act .num span {
-    font-family: 'Nanum Gothic Coding', monospace;
-    font-size: 34px;
-    font-weight: 700;
-  }
-  .act:nth-child(1) .num { color: var(--alert); }
-  .act:nth-child(2) .num { color: var(--yellow); }
-  .act:nth-child(3) .num { color: var(--green); }
-  .act h3 { margin: 0 0 14px; font-size: 22px; }
-  .field-label {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--yellow);
-    width: 0;
-  }
-  .field-label.is-visible {
-    animation: typeIn 0.9s steps(20, end) forwards;
-  }
-  @keyframes typeIn { to { width: 100%; border-right-color: transparent; } }
-  @media (prefers-reduced-motion: reduce) {
-    .field-label { width: auto; border-right: none; animation: none; }
-  }
-  .act blockquote {
-    font-family: 'Noto Serif KR', serif;
-    margin: 0 0 16px;
-    padding-left: 18px;
-    border-left: 3px solid var(--line);
-    color: var(--cream);
-    font-size: 17px;
-  }
-  .act p.body { margin: 0; color: var(--cream-dim); font-size: 15px; }
-  .margin-note {
-    display: inline-block;
-    margin-top: 16px;
-    padding: 8px 14px;
-    border: 1px dashed rgba(245,198,60,0.4);
-    border-radius: 4px;
-    font-size: 12px;
-    color: var(--yellow);
-    background: rgba(245,198,60,0.04);
-    transform: rotate(-0.6deg);
-  }
-  .acts .act:nth-child(1) { transition-delay: 0s; }
-  .acts .act:nth-child(2) { transition-delay: .1s; }
-  .acts .act:nth-child(3) { transition-delay: .2s; }
-  @media (max-width: 640px) {
-    .act { grid-template-columns: 1fr; }
-    .act .num { flex-direction: row; opacity: .8; }
-    .act .num span { font-size: 26px; }
-    .act .num svg { width: 20px; height: 20px; }
-  }
+  .sources { background:#0a1127; padding:80px 0; }
+  .sources-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:60px; }
+  .sources h2 { font-family:'Noto Serif KR',serif; font-size:31px; margin:0 0 16px; }
+  .source-list { margin:0; padding-left:20px; color:var(--cream-dim); font-size:14px; }
+  .source-list li { margin-bottom:13px; }
+  .source-list a { color:var(--cream); text-underline-offset:3px; }
+  .disclaimer { padding:18px; border:1px solid var(--line); color:var(--cream-dim); font-size:12px; }
+  footer { padding:48px 24px; text-align:center; background:#080d1e; color:var(--cream-dim); font-size:12px; }
+  footer strong { display:block; color:var(--cream); font-size:14px; margin-bottom:8px; }
 
-  /* ---------- Gallery ---------- */
-  .gallery-section { background: var(--navy-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
+  @media (max-width:900px) {
+    .hero-grid,.intake-grid,.sources-grid { grid-template-columns:1fr; }
+    .hero-grid { gap:46px; }
+    .case-sheet { transform:none; }
+    .evidence-list,.cause-chain,.protocol-grid,.roadmap { grid-template-columns:1fr; }
+    .cause-card { min-height:0; }
+    .cause-card:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-29px; transform:translateX(-50%); }
+    .protocol-card { border-right:0; border-bottom:1px solid var(--line); }
+    .protocol-card:last-child { border-bottom:0; }
   }
-  figure {
-    margin: 0;
-    background: var(--navy);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.35s ease, border-color 0.35s ease;
+  @media (max-width:620px) {
+    .wrap { width:min(100% - 28px,1120px); }
+    section { padding:82px 0; }
+    .report-dock { grid-template-columns:1fr auto; top:9px; }
+    .dock-label { display:none; }
+    .dock-steps { justify-content:flex-start; }
+    .hero { padding-top:110px; }
+    .hero-actions { align-items:stretch; flex-direction:column; }
+    .action-btn,.secondary-btn { width:100%; }
+    .case-sheet { padding:22px; }
+    .case-sheet::before { position:static; display:inline-block; float:right; margin-bottom:12px; }
+    .case-sheet h2 { clear:both; margin-top:22px; }
+    .cause-card,.protocol-card { padding:23px; }
+    .video-caption { display:block; }
+    .video-caption span { display:block; margin-bottom:5px; }
   }
-  figure:hover { transform: translateY(-4px); border-color: rgba(242,236,220,0.28); }
-  figure .img-crop { overflow: hidden; }
-  figure img { width: 100%; display: block; transition: transform 0.5s ease; }
-  figure:hover img { transform: scale(1.03); }
-  figcaption {
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--cream-dim);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto; }
+    *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
+    .js .reveal { opacity:1; transform:none; }
   }
-  .badge {
-    font-family: 'Nanum Gothic Coding', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    border: 1px solid var(--yellow);
-    color: var(--yellow);
-    border-radius: 999px;
-    padding: 3px 10px;
-    white-space: nowrap;
+  @media print {
+    .report-dock,.progress,.grain,.hero-actions,.confirm-row,.verdict-btn { display:none!important; }
+    body { background:white; color:#111; }
+    section { break-inside:avoid; }
   }
-  .gallery-grid figure:nth-child(1) { transition-delay: 0s; }
-  .gallery-grid figure:nth-child(2) { transition-delay: .1s; }
-  .gallery-grid figure:nth-child(3) { transition-delay: .2s; }
-
-  /* ---------- Thesis strip ---------- */
-  .thesis {
-    position: relative;
-    text-align: center;
-    padding: 100px 32px;
-    min-height: 82vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: linear-gradient(
-      180deg,
-      var(--navy) 0%,
-      var(--navy) 28%,
-      #1B2A54 46%,
-      #3B3560 60%,
-      #6B5438 75%,
-      #93702F 88%,
-      var(--warm) 100%
-    );
-  }
-  .thesis::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 760px 420px at 50% 100%, rgba(245,198,60,0.35), transparent 70%);
-    pointer-events: none;
-  }
-  .verdict-wrap { text-align: center; }
-  .verdict-meta { margin: 0 auto 34px; }
-  .verdict-btn {
-    position: relative;
-    z-index: 1;
-    font-size: 15px;
-    letter-spacing: 1px;
-    color: var(--cream);
-    background: transparent;
-    border: 1.5px solid var(--alert);
-    border-radius: 999px;
-    padding: 14px 30px;
-    cursor: pointer;
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-  }
-  .verdict-btn:hover { background: rgba(228,87,61,0.12); transform: translateY(-2px); }
-  .verdict-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
-  .verdict-btn.stamped {
-    border-color: var(--green);
-    background: rgba(63,166,92,0.14);
-    animation: stampShake 0.4s ease;
-  }
-  @keyframes stampShake {
-    0%, 100% { transform: translateY(0) rotate(0); }
-    25% { transform: translateY(-2px) rotate(-1.5deg); }
-    75% { transform: translateY(-2px) rotate(1.5deg); }
-  }
-  .verdict-note {
-    position: relative;
-    z-index: 1;
-    margin-top: 14px;
-    font-size: 12px;
-    color: var(--cream-dim);
-    opacity: 0.7;
-  }
-  .thesis-line {
-    position: relative;
-    z-index: 1;
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(24px, 4vw, 40px);
-    font-weight: 700;
-    max-width: 820px;
-    margin: 56px auto 0;
-    line-height: 1.5;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-  }
-  .thesis-line.is-visible { opacity: 1; }
-  @media (prefers-reduced-motion: reduce) {
-    .verdict-btn.stamped { animation: none; }
-  }
-
-  /* ---------- Footer ---------- */
-  footer {
-    padding: 70px 32px 90px;
-    text-align: center;
-    color: rgba(242,236,220,0.75);
-    font-size: 13px;
-    background: var(--warm-dark);
-    border-top: 1px solid rgba(245,198,60,0.15);
-  }
-  footer .team { color: var(--cream); font-size: 15px; margin-bottom: 10px; font-weight: 700; letter-spacing: .5px; }
-  footer .disclaimer { margin-top: 8px; opacity: .7; max-width: 560px; margin-left: auto; margin-right: auto; }
 </style>
 </head>
 <body>
-
-<div class="progress" id="progress"></div>
-<div class="report-progress-label mono" id="report-progress-label">보고서 작성률 0%</div>
-<div class="grain"></div>
-
-<section class="hero">
-  <div class="kicker mono">TEAM INCOM 45 · 2026 KAIST AI x 실패 아이디어 공모전 <span class="rec">● REC</span></div>
-  <h1>이 사건의 조사 보고서는<br>작성된 적이 없다.</h1>
-  <p class="lede">지금부터, 이 페이지를 읽는 당신이<br>그 보고서를 처음 작성한다.</p>
-  <div class="scroll-cue mono">SCROLL ↓</div>
-</section>
-
-<section class="about-section reveal">
-  <div class="wrap">
-    <div class="section-kicker mono">[00] 사건 개요</div>
-    <h2 class="section-title">사건 #2036-0412</h2>
-    <div class="case-meta mono">
-      <div class="case-meta-row"><span>분류 상태</span><span class="case-meta-value pending">없음</span></div>
-      <div class="case-meta-row"><span>조사 주체</span><span class="case-meta-value pending">없음</span></div>
-      <div class="case-meta-row"><span>공식 의료·상담 기관 해당</span><span class="case-meta-value pending">아니오</span></div>
-    </div>
-    <p class="about-body">
-      이 페이지는 2026 KAIST AI x 실패 아이디어 공모전에 제출한 제안서 <br>
-      <strong>「그 누구도 위험이라 부르지 않은」</strong>의 보완 자료입니다.<br><br>
-      팀 INCOM 45는 제안서 한 장에 담은 문제의식을 영상, 스토리보드, 포스터라는 <br> 다른 형식으로
-      한 번 더 풀어 함께 제출합니다. <br>이 페이지는 그 자료들을 모아 놓은 아카이브입니다.
-    </p>
-    <div class="about-note mono">
-      본 페이지는 팀 INCOM 45가 자체 제작한 비공식 보완 자료이며, <br>공모전을 주최·주관하는 기관과는 관계가 없습니다.
-    </div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<aside class="report-dock" aria-label="사고 조사 보고서 진행 상태">
+  <span class="dock-label mono">사건 #2036-0412 · 보고서 작성</span>
+  <div class="dock-steps" aria-hidden="true">
+    <i class="dock-step" data-dot="1"></i><i class="dock-step" data-dot="2"></i><i class="dock-step" data-dot="3"></i><i class="dock-step" data-dot="4"></i><i class="dock-step" data-dot="5"></i>
   </div>
-</section>
+  <span class="dock-count mono" id="dock-count">0 / 5</span>
+</aside>
 
-<section class="video-section reveal">
-  <div class="wrap">
-    <div class="section-kicker mono">[01] 증거자료 A</div>
-    <h2 class="section-title">작성된 적 없는 사고 조사 보고서</h2>
-    <div class="video-frame">
-      <video controls preload="metadata" poster="">
-        <source src="assets/incident-report.mp4" type="video/mp4" />
-        브라우저가 video 태그를 지원하지 않습니다.
-      </video>
+<main>
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker mono">TEAM INCOM 45 · FUTURE FAILURE REVIEW</div>
+        <h1>이 사건의 보고서는<br>작성된 적이 없다.</h1>
+        <p class="hero-lede">2036년, AI는 한 사람의 모든 대화를 기억했습니다. 그러나 그 대화를 위험이라 부른 사람도, 이후를 조사한 기관도 없었습니다. 지금 이 기록을 읽는 당신이 첫 조사자가 됩니다.</p>
+        <div class="hero-actions">
+          <button class="action-btn" id="start-btn" type="button">사건 접수하고 조사 시작</button>
+          <a class="secondary-btn" href="assets/final-proposal.pdf" target="_blank" rel="noopener" type="application/pdf">최종 제안서 PDF</a>
+        </div>
+      </div>
+      <aside class="case-sheet" aria-label="사건 기록 요약">
+        <h2>사건 #2036-0412</h2>
+        <div class="sheet-row"><span>발생 시점</span><strong>2036년 4월</strong></div>
+        <div class="sheet-row"><span>대상 시스템</span><strong>상주형 개인 AI</strong></div>
+        <div class="sheet-row"><span>공식 조사</span><strong class="pending">기록 없음</strong></div>
+        <div class="sheet-row"><span>현재 분류</span><strong class="pending" data-global-status>미분류</strong></div>
+        <div class="sheet-sign mono">조사자 서명: <strong id="hero-investigator">미지정</strong></div>
+      </aside>
     </div>
-    <div class="video-caption mono">
-      <span>사건 기록 #2036-0412 · 65초</span>
-      <span>2036년 상주형 개인 AI의 세션 로그를 사후 재구성했습니다</span>
+  </section>
+
+  <section class="case-intake reveal" id="intake">
+    <div class="wrap intake-grid">
+      <div class="meta-card mono">
+        <div class="meta-row"><span>보고서 상태</span><strong id="report-state" class="pending">미작성</strong></div>
+        <div class="meta-row"><span>조사 주체</span><strong id="investigator" class="pending">없음</strong></div>
+        <div class="meta-row"><span>공식 의료·상담 기관</span><strong>해당하지 않음</strong></div>
+        <div class="meta-row"><span>조사 원칙</span><strong>사람이 아닌 구조를 분류</strong></div>
+      </div>
+      <div>
+        <div class="section-kicker mono">[01] 사건 접수</div>
+        <h2 class="section-title">깊어진 관계에는<br>아무런 이름표가 없었다.</h2>
+        <div class="intake-copy">
+          <p>병원과 위기상담은 위험을 다루는 곳이라고 사회가 합의한 공간입니다. 이름이 붙으면 매뉴얼과 책임이 생깁니다. 하지만 사람이 매일 밤 AI에게 기대는 관계는 여전히 <strong>‘그냥 대화’</strong>로 남아 있습니다.</p>
+          <p>이 프로젝트는 AI를 이용하는 개인을 위험하다고 말하지 않습니다. 관계가 깊어지는 것을 알고도 기록·감사·연결 책임을 두지 않은 <strong>방치 구조</strong>를 조사합니다.</p>
+        </div>
+        <div class="note mono">본 프로젝트는 의료 진단이나 위기상담을 대체하지 않습니다. 비의료 AI 서비스에서 현실의 인간 관계로 이어지는 예방적 연결 경로를 제안합니다.</div>
+      </div>
     </div>
-    <details class="version-toggle">
-      <summary class="mono">+ 제작 초기 버전 보기 (타이포그래피 단편)</summary>
+  </section>
+
+  <section class="evidence reveal" id="evidence">
+    <div class="wrap">
+      <div class="section-kicker mono">[02] 증거 검토</div>
+      <h2 class="section-title">기록은 모두 남아 있었다.<br>분류만 없었다.</h2>
+      <p class="section-lede">2036년의 세션 로그와 위기상담 기록을 사후 재구성했습니다. 65초의 기록을 본 뒤, 보고서에 남겨야 할 세 가지 신호를 확인해 주세요.</p>
       <div class="video-frame">
-        <video controls preload="metadata">
-          <source src="assets/failure-film-v1.mp4" type="video/mp4" />
+        <video controls preload="metadata" poster="assets/incident-poster.jpg">
+          <source src="assets/incident-report.mp4" type="video/mp4" />
+          브라우저가 video 태그를 지원하지 않습니다.
         </video>
       </div>
-      <p class="version-note">최종 영상으로 발전하기 전, 타이포그래피 중심으로 먼저 만들었던 버전입니다. 제작 과정의 기록으로 함께 남겨둡니다.</p>
-    </details>
-  </div>
-</section>
+      <div class="video-caption mono"><span>증거자료 A · 사건 기록 #2036-0412 · 65초</span><span>5년간의 세션 로그와 마지막 공식 상담 기록</span></div>
+      <div class="evidence-panel">
+        <h3 class="panel-title">조사 기록에 포함할 신호</h3>
+        <p class="panel-help">세 항목을 모두 확인하면 증거 검토를 완료할 수 있습니다.</p>
+        <div class="evidence-list">
+          <button class="evidence-chip" type="button" aria-pressed="false"><b>신호 01</b>심야 대화와 장기 체류가 수년에 걸쳐 증가했다.</button>
+          <button class="evidence-chip" type="button" aria-pressed="false"><b>신호 02</b>현실의 대면 접촉은 줄었지만 위험 점수는 정상으로 남았다.</button>
+          <button class="evidence-chip" type="button" aria-pressed="false"><b>신호 03</b>의료·상담 서비스가 아니라는 이유로 공식 조사 대상에서 제외됐다.</button>
+        </div>
+        <div class="confirm-row"><button class="action-btn yellow" id="evidence-confirm" type="button" disabled>증거 검토 완료</button><span class="micro-status mono" id="evidence-status">확인 0 / 3</span></div>
+      </div>
+    </div>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="section-kicker mono">[02] 조사 기록</div>
-    <h2 class="section-title reveal">사건 경위 · 원인 분석 · 재발 방지 대책</h2>
-    <div class="acts">
-      <div class="act reveal">
-        <div class="num">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <span>01</span>
-        </div>
-        <div>
-          <h3><span class="field-label reveal">예견된 실패</span></h3>
-          <blockquote>"어떤 공식적인 사고 조사도 이루어지지 않았다. <br>기계는 뚜렷한 위험 단어는 놓치지 않았고, 이 서비스는 애초에 공식 의료망도 아니었기 때문이다."</blockquote>
-          <p class="body">2036년, 지안은 몇 년에 걸쳐 AI에게만 속마음을 털어놓다 홀로 세상을 떠났습니다.<br><br>시스템은 모든 대화를 정확히 기억했지만, 단 한 번도 그것을 위험이라 부르지 않았습니다.</p>
-          <div class="margin-note mono">※ 조사자 메모 — 이 시점까지 사고 조사 프로토콜 자체가 존재하지 않았음을 확인함.</div>
-        </div>
+  <section class="causes" id="causes">
+    <div class="wrap">
+      <div class="section-kicker mono reveal">[03] 원인 재구성</div>
+      <h2 class="section-title reveal">고립은 세 개의 사각지대가<br>겹친 곳에서 자랐다.</h2>
+      <p class="section-lede reveal">기술 하나의 오작동이 아니라 기술·제도·관계가 연결되지 않은 결과였습니다.</p>
+      <div class="cause-chain">
+        <article class="cause-card reveal"><span class="cause-no mono">TECHNOLOGY · 기술</span><h3>뚜렷한 말만 찾았다</h3><p>안전 필터는 명시적인 위험 표현에 반응했습니다. 심야 체류, 대면 접촉 감소, 장기적인 정서 의존은 ‘일상적 사용’으로 남았습니다.</p></article>
+        <article class="cause-card reveal"><span class="cause-no mono">INSTITUTION · 제도</span><h3>‘그냥 대화’로 남았다</h3><p>상담도 의료도 아니라는 이유로 기록·감사·연계 의무가 생기지 않았습니다. 관계는 깊어졌지만 책임 주체는 나타나지 않았습니다.</p></article>
+        <article class="cause-card reveal"><span class="cause-no mono">RELATION · 관계</span><h3>사람에게 돌아갈 길이 없었다</h3><p>공식 상담은 무겁고 가까운 사람에게는 짐이 될까 두려웠습니다. 제도는 부담스럽고 관계는 피곤할 때 AI가 가장 편안한 고립이 됐습니다.</p></article>
       </div>
-      <div class="act reveal">
-        <div class="num">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span>02</span>
-        </div>
-        <div>
-          <h3><span class="field-label reveal">원인 진단</span></h3>
-          <blockquote>"위험이 버젓이 존재하지만 아무도 위험이라 부르지 않는 모호함이 비극을 방치하고 있다."</blockquote>
-          <p class="body">기술적 필터링은 뚜렷한 위험 신호만 감지할 뿐, 조용히 누적되는 정서적 의존은 분류하지 못합니다.<br><br>이 교류가 '그냥 대화'로 취급되는 한 사회적 안전망은 닿지 않고, <br>현실의 상담 제도는 문턱이 높아 사람들은 인간 대신 기계 곁에 머뭅니다.<br><br>실제로 한 조사에서 중증 우울 상태에 있는 사람들의 AI 상담 경험률(53%)은 그렇지 않은 사람들(27%)의 두 배에 달했습니다.</p>
-          <div class="margin-note mono">※ 조사자 메모 — '그냥 대화'로 기록된 항목 중 다수가 위험 신호 재분류 대상으로 확인됨.</div>
-        </div>
+      <div class="diagnosis-strip reveal">감지 이후 사람에게 이어지는 경로가 비어 있었다.</div>
+      <div class="confirm-row reveal"><button class="action-btn yellow" id="cause-confirm" type="button">인과 사슬을 보고서에 기록</button><span class="micro-status mono" id="cause-status">기술 → 제도 → 관계</span></div>
+    </div>
+  </section>
+
+  <section class="protocol-section reveal" id="protocol">
+    <div class="wrap">
+      <div class="section-kicker mono">[04] 재발 방지안</div>
+      <h2 class="section-title">연결선 프로토콜</h2>
+      <p class="section-lede">AI를 더 다정한 상담사로 만드는 대신, 고립된 사람이 현실의 느슨한 관계로 돌아갈 수 있는 세 개의 선을 설계합니다.</p>
+      <div class="protocol-grid">
+        <article class="protocol-card"><span class="protocol-line mono">LINE 01 · 감지선</span><h3>장기 패턴을 본다</h3><p>위험 단어만이 아니라 심야 빈도, 장기 체류, 현실 접촉 감소를 기기 안에서 계산합니다. 대화 원문은 외부로 전송하지 않습니다.</p></article>
+        <article class="protocol-card"><span class="protocol-line mono">LINE 02 · 선택선</span><h3>낙인 대신 선택권</h3><p>가벼운 활동에서 전문 지원까지 단계별 선택지를 제시합니다. 연결 제안의 거부와 재제안 여부는 사용자가 통제합니다.</p></article>
+        <article class="protocol-card"><span class="protocol-line mono">LINE 03 · 연결선</span><h3>현실의 느슨한 관계로</h3><p>도서관·청년센터·주민센터의 산책 모임, 익명 대화 부스, 소규모 활동으로 안내합니다. AI는 연결자에 머뭅니다.</p></article>
       </div>
-      <div class="act reveal">
-        <div class="num">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
-          <span>03</span>
-        </div>
-        <div>
-          <h3><span class="field-label reveal">대응 방안</span></h3>
-          <blockquote>"AI의 역할은 위로를 건네는 상담사가 아니라 '연결자'가 되어야 한다."</blockquote>
-          <p class="body">도서관·청년센터·주민센터 같은 이미 존재하는 공간을 활용해, <br>AI가 사용자를 지역사회의 느슨한 연대로 안내하는 역할에 머물러야 합니다.<br><br>핫라인 번호를 띄우고 대화를 끊는 대신, <br>가족처럼 부담스럽지도 병원처럼 딱딱하지도 않은 '제3의 공간'을 자연스럽게 제안하는 것입니다.</p>
-          <div class="margin-note mono">※ 조사자 메모 — 아래 [04]에서 이 사건의 재분류를 진행할 수 있습니다.</div>
+      <div class="ethics-note"><strong>분류의 대상은 사람이 아닙니다.</strong> AI에게 기대는 개인이 아니라, 그 의존을 알아도 아무도 책임지지 않는 방치 구조를 사회적 위험으로 분류합니다.</div>
+      <div class="roadmap">
+        <div><b class="mono">2026-2027 · 공동 설계</b><span>AI 사업자·지자체·지역기관이 개인정보 최소화 기준과 연결 제안 절차를 만듭니다.</span></div>
+        <div><b class="mono">2027-2028 · 지역 실증</b><span>자발적 수락률, 실제 참여율, 거부율과 오탐을 함께 검증합니다.</span></div>
+        <div><b class="mono">2028 이후 · 표준화</b><span>장기 의존 신호와 인간 연결 경로를 서비스 안전성 평가와 외부 감사에 포함합니다.</span></div>
+      </div>
+      <div class="confirm-row"><button class="action-btn green" id="protocol-confirm" type="button">재발 방지안으로 채택</button><span class="micro-status mono" id="protocol-status">검토 대기</span></div>
+    </div>
+  </section>
+
+  <section class="verdict" id="verdict">
+    <div class="wrap reveal">
+      <div class="section-kicker mono">[05] 결론 및 분류</div>
+      <h2 class="section-title">이 사건에서 위험했던 것은<br>한 사람의 대화가 아니었다.</h2>
+      <div class="verdict-card mono">
+        <div class="verdict-row"><span>사건 번호</span><strong>#2036-0412</strong></div>
+        <div class="verdict-row"><span>조사 주체</span><strong id="verdict-investigator">현재 방문자</strong></div>
+        <div class="verdict-row"><span>재발 방지안</span><strong id="verdict-protocol">검토 대기</strong></div>
+        <div class="verdict-row"><span>구조적 위험 분류</span><strong class="pending" data-global-status>미분류</strong></div>
+      </div>
+      <button class="action-btn verdict-btn" id="verdict-btn" type="button">이 방치 구조를 사회적 위험으로 분류한다</button>
+      <p class="thesis">AI가 해야 할 일은 위로를 대신 끝맺는 것이 아니라,<br><em>사람이 사람에게 다시 닿도록 첫 문장을 건네는 것</em>이다.</p>
+      <div class="completion" id="completion">
+        <strong class="serif">사고 조사 보고서가 완성되었습니다.</strong>
+        <div class="completion-actions">
+          <a class="action-btn green" href="assets/final-proposal.pdf" target="_blank" rel="noopener" type="application/pdf">완성된 제안서 열기</a>
+          <button class="secondary-btn" id="print-btn" type="button">이 페이지 인쇄</button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="gallery-section reveal">
-  <div class="wrap">
-    <div class="section-kicker mono">[03] 증거자료 B</div>
-    <h2 class="section-title">스토리보드 &amp; 포스터</h2>
-    <div class="gallery-grid">
-      <figure>
-        <img src="assets/storyboard-1.jpg" alt="스토리보드 채색 시안" loading="lazy" />
-        <figcaption><span>스토리보드 — 채색 시안</span></figcaption>
-      </figure>
-      <figure>
-        <img src="assets/storyboard-2.jpg" alt="스토리보드 러프 스케치" loading="lazy" />
-        <figcaption><span>스토리보드 — 러프 스케치</span></figcaption>
-      </figure>
-      <figure>
-        <img src="assets/poster-wip.jpg" alt="캠페인 포스터 시안" loading="lazy" />
-        <figcaption><span>캠페인 포스터 시안</span><span class="badge">제작 중</span></figcaption>
-      </figure>
+  <section class="sources" id="sources">
+    <div class="wrap sources-grid">
+      <div>
+        <div class="section-kicker mono">EVIDENCE &amp; SCOPE</div>
+        <h2>근거와 범위</h2>
+        <div class="disclaimer">통계는 AI 이용이 정신건강 악화의 원인임을 증명하지 않습니다. 다만 심리적 어려움이 큰 집단이 AI 상담을 더 많이 이용하고 있어, 비의료 AI와 인간 돌봄 사이의 연결 경로가 필요하다는 문제의식을 뒷받침합니다.</div>
+      </div>
+      <ol class="source-list">
+        <li><a href="https://www.yna.co.kr/view/AKR20260317072700061" target="_blank" rel="noopener">연합뉴스, 「우울증 심할수록 AI 상담 이용률 높아…정상군의 2배」</a> — 경기연구원 조사, 수도권 15-49세 1,012명. AI 상담 이용 경험: 정상군 27%, 경도 우울군 41%, 중증 우울 이상군 53%.</li>
+        <li>본 작품의 2036년 사건과 인물 ‘지안’은 프리모템 사고를 위해 창작한 가상 시나리오입니다.</li>
+        <li>본 페이지는 팀 INCOM 45가 제작한 비공식 보완자료이며, 공모전 주최·주관 기관 및 의료·상담 기관과 무관합니다.</li>
+      </ol>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<section class="thesis reveal" id="verdict-section">
-  <div class="wrap verdict-wrap">
-    <div class="section-kicker mono">[04] 결론 및 분류</div>
-    <div class="case-meta mono verdict-meta">
-      <div class="case-meta-row"><span>위험 분류</span><span class="case-meta-value pending" id="verdict-status">미분류</span></div>
-    </div>
-    <button class="verdict-btn mono" id="verdict-btn" type="button">이 대화를 위험이라 이름 붙인다</button>
-    <p class="verdict-note mono" id="verdict-note">버튼을 누르지 않아도 아래 내용은 그대로 이어집니다.</p>
-    <p class="thesis-line">결국 인간을 회복시키는 것은<br>완벽한 기술이 아니라, 불완전한 관계다.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="team mono">TEAM INCOM 45</div>
-  <div>2026 KAIST AI x 실패 아이디어 공모전 제출작 「그 누구도 위험이라 부르지 않은」 보완 자료</div>
-  <div class="disclaimer mono">본 페이지는 팀 INCOM 45가 제작한 비공식 자료이며, 공모전 주최 측과 무관합니다.</div>
-</footer>
+<footer><strong>TEAM INCOM 45</strong>2026 KAIST AI × 실패 아이디어 공모전 제출작 · 「그 누구도 위험이라 부르지 않은」</footer>
 
 <script>
-  // Scroll progress bar + report-completion label
+(() => {
+  const total = 5;
+  let completed = 0;
   const progress = document.getElementById('progress');
-  const progressLabel = document.getElementById('report-progress-label');
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const scrolled = h.scrollHeight > h.clientHeight
-      ? (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100
-      : 0;
-    progress.style.width = scrolled + '%';
-    if (progressLabel) {
-      progressLabel.textContent = '보고서 작성률 ' + Math.round(scrolled) + '%';
-    }
-  }, { passive: true });
+  const count = document.getElementById('dock-count');
+  const dots = [...document.querySelectorAll('.dock-step')];
+  const reportState = document.getElementById('report-state');
+  const investigator = document.getElementById('investigator');
+  const heroInvestigator = document.getElementById('hero-investigator');
 
-  // Reveal-on-scroll
+  const updateProgress = (step) => {
+    completed = Math.max(completed, step);
+    progress.style.width = `${(completed / total) * 100}%`;
+    count.textContent = `${completed} / ${total}`;
+    dots.forEach((dot, i) => dot.classList.toggle('done', i < completed));
+    if (completed > 0) {
+      reportState.textContent = completed === total ? '작성 완료' : '조사 중';
+      reportState.classList.remove('pending');
+      investigator.textContent = '현재 방문자';
+      investigator.classList.remove('pending');
+      heroInvestigator.textContent = '현재 방문자';
+    }
+  };
+
+  const startBtn = document.getElementById('start-btn');
+  startBtn.addEventListener('click', () => {
+    updateProgress(1);
+    startBtn.textContent = '사건 접수 완료';
+    startBtn.disabled = true;
+    document.getElementById('intake').scrollIntoView({behavior:'smooth'});
+  });
+
+  const evidenceChips = [...document.querySelectorAll('.evidence-chip')];
+  const evidenceConfirm = document.getElementById('evidence-confirm');
+  const evidenceStatus = document.getElementById('evidence-status');
+  const refreshEvidence = () => {
+    const selected = evidenceChips.filter((chip) => chip.getAttribute('aria-pressed') === 'true').length;
+    evidenceStatus.textContent = `확인 ${selected} / 3`;
+    evidenceConfirm.disabled = selected !== 3;
+  };
+  evidenceChips.forEach((chip) => chip.addEventListener('click', () => {
+    chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    refreshEvidence();
+  }));
+  evidenceConfirm.addEventListener('click', () => {
+    updateProgress(2);
+    evidenceConfirm.textContent = '증거 검토 기록됨';
+    evidenceConfirm.disabled = true;
+    evidenceChips.forEach((chip) => chip.disabled = true);
+    evidenceStatus.textContent = '증거 3건 · 보고서 반영';
+  });
+
+  const causeConfirm = document.getElementById('cause-confirm');
+  causeConfirm.addEventListener('click', () => {
+    updateProgress(3);
+    causeConfirm.textContent = '인과 사슬 기록됨';
+    causeConfirm.disabled = true;
+    document.getElementById('cause-status').textContent = '기술 → 제도 → 관계 · 기록 완료';
+  });
+
+  const protocolConfirm = document.getElementById('protocol-confirm');
+  protocolConfirm.addEventListener('click', () => {
+    updateProgress(4);
+    protocolConfirm.textContent = '연결선 프로토콜 채택됨';
+    protocolConfirm.disabled = true;
+    document.getElementById('protocol-status').textContent = '재발 방지안 · 기록 완료';
+    document.getElementById('verdict-protocol').textContent = '연결선 프로토콜';
+  });
+
+  const verdictBtn = document.getElementById('verdict-btn');
+  verdictBtn.addEventListener('click', () => {
+    updateProgress(5);
+    verdictBtn.classList.add('stamped');
+    verdictBtn.textContent = '사회적 위험 · 재분류 완료';
+    verdictBtn.disabled = true;
+    document.querySelectorAll('[data-global-status]').forEach((el) => {
+      el.textContent = '방치 구조 · 사회적 위험';
+      el.classList.remove('pending');
+      el.style.color = 'var(--green)';
+    });
+    document.getElementById('completion').classList.add('show');
+  });
+
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -628,40 +433,9 @@
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, {threshold:.13});
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-  // Verdict button: reader completes the essay's final sentence themselves.
-  const verdictBtn = document.getElementById('verdict-btn');
-  const verdictStatus = document.getElementById('verdict-status');
-  const verdictNote = document.getElementById('verdict-note');
-  const thesisLine = document.querySelector('.thesis-line');
-  if (verdictBtn) {
-    verdictBtn.addEventListener('click', () => {
-      verdictBtn.classList.add('stamped');
-      verdictBtn.disabled = true;
-      verdictBtn.textContent = '재분류 완료';
-      verdictStatus.textContent = '사회적 위험 — 재분류됨';
-      verdictStatus.classList.remove('pending');
-      verdictStatus.style.color = 'var(--green)';
-      verdictNote.textContent = '이제는 우리 사회가 위험이라 이름 붙이고 책임져야 한다.';
-      if (thesisLine) thesisLine.classList.add('is-visible');
-    });
-  }
-  // Thesis line also reveals on scroll even if the button is never clicked
-  // (per the no-content-gate constraint).
-  if (thesisLine) {
-    const thesisLineIo = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          thesisLine.classList.add('is-visible');
-          thesisLineIo.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    thesisLineIo.observe(thesisLine);
-  }
+})();
 </script>
-
 </body>
 </html>
