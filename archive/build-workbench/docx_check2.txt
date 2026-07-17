@@ -1,4 +1,0 @@
-fonts used: {'조선일보명조', '조선견고딕'}
-bold runs: 14
-italic runs: 1
-total paragraphs: 21
