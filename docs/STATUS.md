@@ -8,7 +8,7 @@
 - 배포 브랜치: `main`
 - 사이트 형식: 5단계 사건 접수·증거 검토·원인 재구성·재발 방지·최종 분류 + 사건 보관소
 - 주 영상: `assets/incident-report.mp4`
-- 제안서: `assets/final-proposal.pdf` (저장소 루트 `최종_제안서.pdf`와 동일 파일)
+- 제안서: `assets/final-proposal.pdf` (저장소 루트 `최종_제안서.pdf`, `submission/제안서_최종본.pdf`와 동일 파일)
 - 사건 보관소: 완성 영상·최종 제안서·영상 스틸 3장·실패/성공 스토리보드 각 8장
 - 진행 제어: 앞 단계를 완료해야 다음 단계와 최종 분류가 활성화되는 순차형 흐름
 - 보관소 전환: 본편 종료 뒤 스크롤로 이어지는 `REPORT CLOSED · ARCHIVE OPEN` 브리지
@@ -17,8 +17,7 @@
 ## 통합 저장소
 
 - 기준 로컬 경로: `C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure`
-- 최종 제출 원문과 PDF: `submission/`
-- PDF 생성 소스: `proposal-source/`
+- 최종 제출 원문과 PDF: `submission/제안서_최종본.txt`·`.docx`·`.pdf` (디자인 요소 없는 순수 문서형, Word로 직접 작성)
 - 영상 소스: `video-source/`
 - 이전 작업본과 영상 저장소 이력 백업: `archive/`
 - 기존 바탕화면 작업공간은 통합 검증이 끝날 때까지 삭제하지 않는다.

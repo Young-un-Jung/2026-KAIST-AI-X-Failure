@@ -1,45 +1,77 @@
 # 그 누구도 위험이라 부르지 않은
 
-2026 KAIST AI × 실패 아이디어 공모전 팀 INCOM 45의 통합 프로젝트 저장소입니다. 공개 사이트와 최종 제출물, 영상 소스, 작업 기록을 한곳에서 관리합니다.
+**2026 KAIST AI × 실패 아이디어 공모전** 출품작 · TEAM INCOM 45
+
+2036년, AI는 한 사람의 모든 대화를 기억했다. 그러나 그 관계를 위험이라 부른 사람도, 이후를 조사한 기관도 없었다. 이 저장소는 그 사고를 다루는 인터랙티브 웹사이트, 65초 사고 기록 영상, 2페이지 제안서, 스토리보드까지 이 프로젝트의 모든 결과물과 제작 과정을 담고 있다.
 
 - 팀원: 정영운 · 우연정 · 이유빈
-- **최종 제안서 PDF: [`최종_제안서.pdf`](./최종_제안서.pdf)** (저장소 루트, 클릭하면 바로 열림)
 
-- 공개 사이트: https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/
-- 원격 저장소: https://github.com/Young-un-Jung/2026-KAIST-AI-X-Failure
-- 배포 방식: `main` 브랜치 루트의 GitHub Pages
+## 바로 보기
 
-## 구조
+| 자료 | 링크 |
+|---|---|
+| 🌐 공개 사이트 (인터랙티브 사건 조사 경험) | https://young-un-jung.github.io/2026-KAIST-AI-X-Failure/ |
+| 📄 최종 제안서 PDF | [`최종_제안서.pdf`](./최종_제안서.pdf) |
+| 🎬 사고 기록 영상 (65초) | [`assets/incident-report.mp4`](./assets/incident-report.mp4) |
+| 🎨 Figma (스토리보드 제작 보드) | [INCOM45_실패공모전](https://www.figma.com/design/NeuWLIoPZjSAY6PaBNKsl1/INCOM45_%EC%8B%A4%ED%8C%A8-%EA%B3%B5%EB%AA%A8%EC%A0%84?node-id=0-1&t=jgBEelUjbdtkfq2Q-1) |
 
-- `index.html`, `assets/`: 실제 공개 사이트와 영상·PDF·웹용 스토리보드 자산
-- `submission/`: 팀 합의 원문, 온라인 요약, 최종 제안서
-- `proposal-source/`: 최종 PDF 생성 스크립트와 인쇄용 HTML
-- `video-source/`: Remotion 영상 소스와 추적되는 오디오 파일
-- `sources/`: 외부 음원 및 팀 스토리보드의 고해상도 원본
-- `archive/`: 이전 DOCX/PDF, 보완자료 이미지, 제작 과정 파일, 영상 저장소 백업
-- `docs/`: 현재 상태, 진행 기록, 콘텐츠 결정, 작업 안내
+## 핵심 파일
 
-## GitHub Desktop
+| 경로 | 내용 |
+|---|---|
+| `index.html` | 공개 사이트 전체 (5단계 사건 조사 경험 + 사건 보관소) |
+| `assets/` | 사이트가 직접 서빙하는 영상·PDF·스토리보드 이미지 |
+| `submission/제안서_최종본.docx` \| `.pdf` \| `.txt` | 제출용 최종 제안서 (Word 원본 / PDF / 원문 텍스트) |
+| `submission/온라인_제출용_3단계_요약_최종.txt` | 온라인 신청서 "아이디어 요약" 입력용 텍스트 |
+| `video-source/` | 영상 Remotion 프로젝트 소스 |
+| `sources/storyboard-originals/` | 스토리보드 고해상도 원본 |
+| `docs/` | 콘텐츠 결정 기준, 진행 기록, 작업 안내 |
+| `archive/` | 이전 초안·디자인 버전·제작 과정 백업 (현재 공개본에는 미사용) |
 
-GitHub Desktop에서는 이 폴더 자체를 로컬 저장소로 선택합니다.
+## 프로젝트 구조
 
 ```text
-C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure
+2026-KAIST-AI-X-Failure/
+├── index.html            # 공개 사이트
+├── assets/                # 사이트용 영상·PDF·이미지
+├── submission/             # 최종 제출 원문·요약·제안서
+├── video-source/           # 영상 제작 소스 (Remotion)
+├── sources/                # 스토리보드·음원 고해상도 원본
+├── docs/                   # 콘텐츠 기준·진행 기록·작업 안내
+└── archive/                # 이전 버전·제작 과정 보관
 ```
 
-최신 상태는 `main` 브랜치와 `origin/main`이 같은지 확인합니다. 사이트는 루트의 `index.html`을 사용하므로 디렉터리를 옮기지 않습니다.
+## 콘텐츠 개요
 
-## 로컬 사이트 확인
+Pre-Mortem(사전 실패 분석) 형식으로, 3단계로 구성된다.
+
+1. **예견된 실패** — 2036년, 지안은 몇 년간 AI에게만 속마음을 털어놓다 홀로 세상을 떠났다. 시스템은 모든 대화를 기억했지만 장기 의존과 고립을 위험으로 분류하지 않았다.
+2. **원인 진단** — 기술은 명시적 위험어만 찾았고, 이 관계는 '그냥 대화'로 취급되어 책임 주체가 없었으며, 현실의 상담 제도는 문턱이 높아 사람들을 AI에 더 깊이 고립시켰다.
+3. **대응 방안** — AI는 상담사가 아니라 '연결자'가 되어, 도서관·청년센터·주민센터 같은 기존의 제3의 공간으로 사람이 현실의 관계에 다시 닿도록 첫 문장을 건넨다.
+
+자세한 콘텐츠 기준은 [`docs/CONTENT_DECISIONS.md`](docs/CONTENT_DECISIONS.md), 근거 통계와 출처는 사이트 하단 "근거와 범위" 섹션과 `submission/제안서_최종본.txt`의 각주를 참고.
+
+## 사건 보관소 (Case Archive)
+
+공개 사이트 하단에는 본편 이후 이어지는 보관소가 있다: 완성 영상, 최종 제안서, 영상 스틸 3장, 실패·성공 두 시나리오로 갈라지는 스토리보드 8장씩. 포스터 최종본은 도착하는 대로 같은 보관소에 `EXHIBIT C · POSTER`로 추가할 예정이다.
+
+## 로컬에서 사이트 확인하기
 
 ```bash
 python -m http.server 8080
 ```
 
-브라우저에서 `http://localhost:8080`을 엽니다.
+브라우저에서 `http://localhost:8080`을 연다. `index.html`과 `assets/`는 GitHub Pages가 그대로 서빙하는 위치이므로 옮기지 않는다.
 
 ## 음원 출처
 
 - 배경음: [Pixabay · Dark Ambient](https://pixabay.com/music/ambient-dark-ambient-543982/)
 - 효과음: [Pixabay · Stamp](https://pixabay.com/sound-effects/film-special-effects-stamp-81635/)
 
-원본 URL과 다운로드 당시 라이선스 화면은 제출 증빙과 함께 별도로 보관합니다.
+## GitHub Desktop
+
+```text
+C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure
+```
+
+이 폴더 자체가 로컬 저장소다. `main`과 `origin/main`이 동기화됐는지는 GitHub Desktop에서 확인한다.

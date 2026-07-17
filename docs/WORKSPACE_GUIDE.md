@@ -12,7 +12,8 @@ C:\Users\mynam\Documents\GitHub\2026-KAIST-AI-X-Failure
 
 - `index.html`과 `assets/`는 GitHub Pages가 직접 사용하는 위치이므로 이동하지 않는다.
 - 최종 제출 원문은 `submission/`에서 관리한다.
-- 최종 제안서 PDF는 저장소 루트의 `최종_제안서.pdf`를 찾는다. `submission/제안서_최종_C_연결선.pdf`, `assets/final-proposal.pdf`와 항상 같은 파일이어야 하며, `proposal-source/build_final_submission.py`를 실행하면 세 곳에 동시에 기록된다.
+- 최종 제안서는 `submission/제안서_최종본.docx`가 원본이다(Word 직접 작성, 디자인 요소 없음). PDF로 내보낸 뒤 `submission/제안서_최종본.pdf`, `assets/final-proposal.pdf`, 저장소 루트 `최종_제안서.pdf` 세 곳에 같은 파일을 복사해 둔다.
+- 이전 디자인 버전(그래픽 레이아웃) PDF와 생성 스크립트는 `archive/drafts/`, `archive/build-workbench/proposal-source-styled/`에 보존돼 있다.
 - 영상 소스의 `node_modules/`, Remotion 캐시, 렌더 출력물은 커밋하지 않는다.
 - 과거 기록은 `docs/PROGRESS_LOG.md`에서 지우지 않고 아래에 추가한다.
 
