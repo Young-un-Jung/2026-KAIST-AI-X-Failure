@@ -341,6 +341,50 @@
     line-height: 1.5;
   }
 
+  /* ---------- Case status badge ---------- */
+  .case-badge {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 190;
+    background: rgba(16, 27, 62, 0.92);
+    border: 1px solid var(--alert);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    backdrop-filter: blur(6px);
+    transition: border-color 0.6s ease, background 0.6s ease;
+    pointer-events: none;
+  }
+  .case-badge .id { opacity: .7; margin-bottom: 4px; }
+  .case-badge .status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--alert);
+    font-weight: 700;
+    transition: color 0.6s ease;
+    white-space: nowrap;
+  }
+  .case-badge .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--alert);
+    animation: blink 1.6s steps(2) infinite;
+    transition: background 0.6s ease;
+    flex-shrink: 0;
+  }
+  .case-badge.resolved { border-color: var(--green); background: rgba(36, 26, 14, 0.92); }
+  .case-badge.resolved .status { color: var(--green); }
+  .case-badge.resolved .dot { background: var(--green); animation: none; }
+  @media (max-width: 640px) {
+    .case-badge { bottom: 14px; right: 14px; padding: 9px 12px; font-size: 10.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-badge .dot { animation: none; }
+  }
+
   /* ---------- Footer ---------- */
   footer {
     padding: 70px 32px 90px;
@@ -358,6 +402,10 @@
 
 <div class="progress" id="progress"></div>
 <div class="grain"></div>
+<div class="case-badge mono" id="case-badge">
+  <div class="id">사건 #2036-0412</div>
+  <div class="status"><span class="dot"></span><span class="status-text">조사 상태: 해당 없음</span></div>
+</div>
 
 <section class="hero">
   <div class="kicker mono">TEAM INCOM 45 · 2026 KAIST AI x 실패 아이디어 공모전 <span class="rec">● REC</span></div>
@@ -504,6 +552,23 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Case status badge resolves once the reader reaches the thesis line --
+  // the page's own version of finally naming what happened.
+  const caseBadge = document.getElementById('case-badge');
+  const thesisEl = document.querySelector('.thesis');
+  if (caseBadge && thesisEl) {
+    const thesisIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          caseBadge.classList.add('resolved');
+          caseBadge.querySelector('.status-text').textContent = '조사 상태: 재분류됨';
+          thesisIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    thesisIo.observe(thesisEl);
+  }
 </script>
 
 </body>
